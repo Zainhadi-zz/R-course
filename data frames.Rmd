@@ -1,0 +1,13 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+data <- data.frame(Name=c("Zain Hadi","Shehroz Ahmed","Tooba Nawab"),
+                   Age=c(22,21,22),
+                   Status=c("Student","Employed","Employed")
+                   
+                   )
+```
+

@@ -1,0 +1,21 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+mydf1 <- data.frame(
+  id=letters[1:5],
+  name=c("zain","bill","steve","elon","menk"),
+  status=c("student","former ceo","dead","ceo","scholar")
+  )
+```
+
+```{r}
+mydf <- data.frame(
+  id=letters[1:5],
+  x=1:5,
+  y=6:10
+                   )
+```
+

@@ -1,0 +1,40 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tibble)
+```
+
+```{r}
+tibble(
+  x=1:10,
+  y=1,
+  z=x*2
+)
+```
+```{r}
+tb <- tibble(
+  a=lubridate::now()+runif(1e3)*2,
+  b=lubridate::today()+runif(1e3)*3,
+  c=1:1e3,
+  d=runif(1e3),
+  e=sample(LETTERS,1e3,replace = TRUE)
+  
+  
+  
+  
+)
+```
+
+
+```{r}
+tibble(
+  name=1:10,
+  bname=11:20,
+  
+  
+)
+```
+

@@ -1,0 +1,13 @@
+---
+title: "List Function"
+output: html_notebook
+---
+
+```{r}
+x <- list(a=("zain,tooba,shehroz"),b=1:10,data=head(iris))
+y <- list(a1=("rim,tosiq,mishi"),b=11:20,data=head(iris3))
+list(x,y)
+xlist$a
+
+```
+

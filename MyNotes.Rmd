@@ -1,0 +1,37 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+x <- 1:10
+(x <- 1:10)
+```
+
+
+```{r}
+c(x)
+y <- 1:9
+
+
+x_new <- y[1:9]
+
+x_new + y
+```
+
+
+```{r}
+z <- c(11,NA,13,NA,15)
+is.na(z)
+anyNA(z)
+```
+```{r}
+a <- c(22,33,44,55)
+
+z + a
+```
+```{r}
+seq(from = 1, to = 100, by = 10)
+```
+
