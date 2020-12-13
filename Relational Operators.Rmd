@@ -1,0 +1,25 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+z <- sample(1:100,1)
+a <- sample(1:100,1)
+
+z < a
+z == a
+```
+```{r}
+z <- sample(1:100,1)
+a <- sample(1:100,1)
+
+z > a
+z == a
+z != a
+```
+```{r}
+
+sum(sum (z != a) == TRUE)
+```
+
