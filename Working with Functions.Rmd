@@ -1,0 +1,38 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+Working with function with relational Operators and Conditional Operator
+
+```{r}
+fun_z <- function(a){
+  a*sample(0:100,1)
+  if(a <= sample(0:1000,1)){print("We here")}
+  else{print("NON")}}
+```
+```{r}
+fun_z(2633)
+```
+Logical Operators and Functions
+
+```{r}
+
+fun_and<- function(a,z){
+  if(a <= z & z >= a){print("Run ")}
+  else{print("Not Run")}
+  
+}
+fun_or<- function(a,z){
+  if(a == z & z == a){print("Run ")}
+  else{print("Not Run")}
+  
+}
+
+```
+
+
+```{r}
+i <- sample(0:100,1)
+q <- sample(0:100,1)
+fun_or(i,q)
+```

@@ -1,0 +1,25 @@
+---
+title: "Working with Factos"
+output: html_notebook
+---
+```{r}
+data <- c("student","teacher","faculty","teacher","student","student","faculty")
+```
+
+```{r}
+class(data)
+
+is.factor(data)
+
+factor1 <- factor(data)
+```
+```{r}
+factor1
+```
+```{r}
+levels(factor1)
+```
+```{r}
+factor_new <- factor(factor1,levels=c("student","teacher","faculty","management"))
+```
+
