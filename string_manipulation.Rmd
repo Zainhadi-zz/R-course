@@ -1,0 +1,93 @@
+---
+title: "String Manipulation"
+output: html_notebook
+---
+
+{stringr}
+
+
+```{r}
+library(stringr)
+
+```
+
+```{r}
+library(tidyr)
+billboard_longer %>%
+  mutate(Week = str_sub(Week,3,4),Week = as.integer(Week))
+  
+```
+```{r}
+library(stringr)
+
+x <- c("pillow","mouse","tools","cycle","laptop","monitor","mobile","hello world","apple")
+
+length("hello")
+print("---------------------------")
+
+str_length("hello")
+
+
+```
+```{r}
+str_sub("hello",2,4)
+print("---------------------")
+str_sub(x,1,3)
+print("---------------------")
+str_detect(x,"a")
+```
+Complex Pattern to detect the certain type in strings
+
+```{r}
+str_detect(x, "[:alpha:]")
+```
+```{r}
+str_detect(x,"[:space:]")
+
+```
+
+```{r}
+str_detect("hello world","[:space:]")
+```
+
+```{r}
+str_detect(x,"^a")
+
+```
+
+```{r}
+str_detect(x,"e$")
+```
+
+```{r}
+str_extract(x,"a")
+```
+
+```{r}
+xstring <- "hello world, hell yeah"
+str_extract_all(xstring,"ll")
+```
+```{r}
+str_replace(xstring,"ll","x")
+```
+
+```{r}
+str_replace_all(xstring,"ll","x")
+```
+```{r}
+str_extract(x,"[:alpha:]*e")
+```
+```{r}
+zz <- str_split("my name is zain hadi     ansari","a") %>%
+  unlist()
+
+```
+
+```{r}
+str_trim(zz)
+str_squish(zz)
+```
+```{r}
+str_pad("hello world",20,"both",pad = "-")
+```
+

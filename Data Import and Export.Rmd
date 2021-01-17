@@ -1,0 +1,20 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(readr)
+
+
+df3<-read_csv("teestfile.csv")
+```
+```{r}
+library(httr)
+
+g<-httr::GET("google.com")
+
+
+
+```
+

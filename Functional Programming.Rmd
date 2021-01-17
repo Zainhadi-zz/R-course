@@ -1,0 +1,97 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+rep(10,10)
+```
+```{r}
+lapply(rep(10,10),runif)
+```
+```{r}
+unlist(lapply(rownames(mtcars),nchar))
+```
+```{r}
+random_function <- function(name){
+  if(mtcars[name,9]==0){
+    print(name)
+    print("Automatic")
+}
+  else{
+   
+    print(name)
+    print("Non Automatic")
+  }
+
+  
+  
+  
+}
+  
+
+```
+
+```{r}
+unlist(sapply(rownames(mtcars),  function(name){
+  if(mtcars[name,9]==0){
+    print(name)
+    print("Automatic")
+}
+  else{
+   
+    print(name)
+    print("Non Automatic")
+  }
+
+  
+  
+  
+}))
+```
+
+```{r}
+
+f2 <-function(name){
+  if(mtcars[name,9]==0){
+    
+    print("Automatic = ", name)
+  }
+  else{
+    print("Non automatic = ", name)
+    
+    
+  }
+  
+  
+}
+
+
+
+```
+```{r}
+
+mfun <- function(name){
+  if(mtcars[name,9] == 0)
+    
+   name
+ 
+  
+  else
+    
+    NA
+  
+  
+  
+}
+
+
+
+```
+```{r}
+
+car_cat <- unlist(lapply(rownames(mtcars), mfun))
+
+
+```
+

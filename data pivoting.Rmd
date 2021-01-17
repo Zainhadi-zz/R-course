@@ -1,0 +1,72 @@
+---
+title: "Data Pivoting"
+output: html_notebook
+---
+{tidyr}
+
+pivot_longer:
+
+pivot_longer(variable, columns which have messy data issue, name of new column , name of column with values)
+
+pivot_wider
+
+```{r}
+library(tibble)
+library(tidyr)
+library(waldo)
+
+messy_data <- tibble::tribble(
+  ~students , ~quiz_a , ~quiz_b, ~mids, ~finals,
+  "Zain", "A","A","A","A",
+  "Tooba", "F","B","C","A",
+  "Asrah","B","B","C","A",
+  "Shez","A","C","B","A"
+)
+
+tidy_data <- pivot_longer(messy_data,-students, names_to = "Assessment",values_to = "Grades")
+
+
+
+```
+
+```{r}
+messy_data1 <- pivot_wider(tidy_data,names_from = Assessment, values_from = Grades)
+
+waldo::compare(messy_data,messy_data1)
+
+```
+
+```{r}
+messy_income <- relig_income
+```
+```{r}
+tidy_income <- pivot_longer(relig_income,-religion,names_to = "income",values_to = "count") 
+```
+```{r}
+messy_income2 <- pivot_wider(tidy_income,names_from = income,values_from = count)
+
+waldo::compare(messy_income,messy_income2)
+
+```
+```{r}
+billboard %>%
+  select(starts_with("wk"))
+```
+```{r}
+billboard_longer <- billboard %>%
+  pivot_longer( cols = starts_with("wk"),names_to = "Week", values_to = "Rank", values_drop_na = TRUE)
+billboard_longer
+  
+```
+
+```{r}
+billboard_longer %>%
+  filter(artist == "2 Pac")
+```
+```{r}
+billboard_longer %>%
+  group_by(track) %>%
+  summarise(highest_rank = min(Rank),Week = Week) %>%
+  arrange(highest_rank)
+```
+

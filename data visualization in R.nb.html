@@ -11,7 +11,7 @@
 
 
 
-<title>R Notebook</title>
+<title>Data Visualization</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1804,31 +1804,122 @@ summary {
 
 
 
-<h1 class="title toc-ignore">R Notebook</h1>
+<h1 class="title toc-ignore">Data Visualization</h1>
 
 </div>
 
 
 <!-- rnb-text-begin -->
+<p>we will use tidyverse package package name is : ggplot2</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShcImx1YnJpZGF0ZVwiKVxuXG50b2RheSgpXG5ub3coKVxuXG5cblxuXG5gYGAifQ== -->
-<pre class="r"><code>library(&quot;lubridate&quot;)
-
-today()
-now()
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueW1kKFwiMjAyMC0xMi0wMVwiKVxuYGBgIn0= -->
-<pre class="r"><code>ymd(&quot;2020-12-01&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZ3Bsb3QyKVxubGlicmFyeShkcGx5cilcbmxpYnJhcnkoc2tpbXIpXG5gYGAifQ== -->
+<pre class="r"><code>library(ggplot2)
+library(dplyr)
+library(skimr)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXRjYXJzXG5gYGAifQ== -->
+<pre class="r"><code>mtcars</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MzIsIm5jb2wiOjExfSwicmRmIjoiSDRzSUFBQUFBQUFBQnExWFRXd2JSUlRlSkk3anY3Z09TU1I2S1h2Z1VCQjJ2R3M3cEVEeGdKMFFxbFM0Q1VxaU5xbzB0amZ4MHMyT003dDJtclJJdWZSY2NTemlnRlNPcUFlNDVGaFJpUk5JNWRRYm9oY3VGQ2tTS2dJa0Fyczc3MjNpRFc0TVlTVHJ6ZnZlMy9mZXpHWTM4K1hsWEd3NUprblNnQlJ5ZmdPRHpsWUtseXFLV2xBbEtkVHZhSDJPSmVySzY0N1hxTE9KTzcrazg1TkpRZktXTHllL2NkZTNwTERxTGFKK21YTVhVVS9mY2RiSDVKVTdRazZCSGYxelloRUY5Q3pZbFRtaFowQi9FZXdvMDRCREF2SW02cjhJdmJBamVFMEFQOHp6TXZEQXVxOURuZGZBRC9OTW9CLzBrY0YraGQyZncvT0FvMHdGZExtTG51cmlIL1RyVlFiekJlVi9qVCtHdjRSenFBT084Z3JJcGdnZzdSMGhqWUJlWFJUenBqRHZPcHdmeW8wM3hQa0U1WWNRZi9PK2tEZEFYL2hjMk9lZkNIbnBhNUgvYWxoSTZ3Zmhad0cvRnVoYm9DOUF2cXVqb3Y0U3hMZjJnQy93NXcvQmozVE80UXJ3UUxsRU9uVU42bDBHM1B4VXlQZWcvaExXRDhqVm5YK1dPc1IvQUhrTjhLK0EvUUxrclVDOVpaRFYrNTBTZVNBL2pGOEUrd3JFTlFOOTJIdlFuN0JMT0lkVDhIeWhUTUp6RzduN0tIYSsrUm1KQWg0ZTIzNzh6cjB4RXIzbmJjandyVE83bDM2NlJVNnRuSDM2MWUyVkl6SnkyOXNja1VOTk4vRUdpVUMvVWJmTTNVY2s1U1E3c3p0UFJuZTlEVW01MWJZZmsyRzRiMzU5NERNTWNjZ1Q0MGNnUHVuUmVNblBrM0RWczcrU0JQaWxCQTkvRGlHd0R3R3ZmdUFiaFh4eDZEY08vU2ZRRGpqeTh2MUFwcnp5c3o3ZjVIbXZNQm1IT3VOZnBKT0xvZE5rbkFxZWZhTGY0dS9Ddi9nbnpITUFlQ1NncjdnM2poc2tpZjI2OUo4K0tPNURIMzFlK1JlS3Z4V0tOMy8rcUVHaWtDY004Y2cvTFBqNGM4aTJSTHd5S1Bpcm40aTRISndiNHZrcFVYY0M1cEdIZmlaL2hQY0svTDFXUVZmd2ZRSG5xWUsvOG9mb1EvbE9uSXR5elIzY0U1SzdMdktyTU1jYzVNbDdCL09BWkwvMytqdDQvMkI4b3JOdUZ0NExXZERUVUJmZk4yazROMVh3d2psSWdWWGM2NVJCdkp0ZnQ3aGUxMG56SGNmM0dmN2VIUDZ2UGs2NlRzcmp1RGsrSTc5NExsSkNPU0lqeDhodWNiM0c5NXJ2MzhhUDlTakJYK295aCtDOGlCVFFVNTI0TDN2bEgvUUwxQTNXQytKSDZnWDVkZk1MZmtkSnVEbyt1QWROdXE2NW55aHVXQnpBZ2ZYbUdtNXJXd1pzUTNYZGFzSyt2OUgwVVU1dFJEZHhGOXF3dEJxaWJRdDNkQjN0YXhybHVLOVJYZzNRaW5LMm1UbE1UVWJEUmJwZHAvTDhjaDZBWVIrUWx5aXlqcFdwYmJWTStWVWxDMGh5bG5GVHMrVzhYT1o2V3dOMEJOQ0ZKdU0ycmJJVzhoOWFwSVpPVGR2UDE3SnNqY3U1eWF6UFErTTFXYzFueXdCRUJKRExkdXBUZ1lDcGJBbHpla0Mra0YyWVBvTE1BUkkvUUREc3VSS3Q2NFpCYS9LTW9XbjJKbU4xc0l6TzZXYU5HYVpjWXFhdG01cHBVenk2a1ZLRGIxbUcwOEc3NjAyTjY3NGhNcU5UVzFiVUtTdzR5MHhubWlXOXJlUHhKZDluVzh4Mk1NYVpVeGZIZmdnMUVVeVZXWDFOazBzTmFoaWF1YWJoQ2NmZnVsaVNMOUMyWnVnbTlscWk2NVF6K2JKZk9sVnhhYnQ5NlZ5cjZoemJpbm9VbDVYME9TeGRZZHlxTlRUNW5KSlBxd0FtNXBqZHN1VHBGbWROcEpPY1lid3VWNXhqMURpVmNhYUpHWTF6eW5XNXJKdnM0Qkpaam8rdHkyOHpqdUd4UldhMG1hemsxZW5nUTFNenFJVTNFOEZZbmRvMHM4cWRTK3RvKzRHUUlkYTBkV1k2UWYzdXY3ZURnZUErSGdCU0xkTzkvdlYwcmRFeXI2VlY5MnNqNXRuRmJ4aWtmR2dmRnpYNy80SmNnNUFyN0p5RmN4K1F2RUdyR3A1LzBubk92TWNzMCtUNndYVjNVQ3RqczRNTEZITXVGaUplYzlMKzM1c0JZVFRYRHdBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108.0","4":"93","5":"3.85","6":"2.320","7":"18.61","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258.0","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360.0","4":"175","5":"3.15","6":"3.440","7":"17.02","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225.0","4":"105","5":"2.76","6":"3.460","7":"20.22","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360.0","4":"245","5":"3.21","6":"3.570","7":"15.84","8":"0","9":"0","10":"3","11":"4","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"146.7","4":"62","5":"3.69","6":"3.190","7":"20.00","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"140.8","4":"95","5":"3.92","6":"3.150","7":"22.90","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.30","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"},{"1":"17.8","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.90","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280C"},{"1":"16.4","2":"8","3":"275.8","4":"180","5":"3.07","6":"4.070","7":"17.40","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SE"},{"1":"17.3","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.730","7":"17.60","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SL"},{"1":"15.2","2":"8","3":"275.8","4":"180","5":"3.07","6":"3.780","7":"18.00","8":"0","9":"0","10":"3","11":"3","_rn_":"Merc 450SLC"},{"1":"10.4","2":"8","3":"472.0","4":"205","5":"2.93","6":"5.250","7":"17.98","8":"0","9":"0","10":"3","11":"4","_rn_":"Cadillac Fleetwood"},{"1":"10.4","2":"8","3":"460.0","4":"215","5":"3.00","6":"5.424","7":"17.82","8":"0","9":"0","10":"3","11":"4","_rn_":"Lincoln Continental"},{"1":"14.7","2":"8","3":"440.0","4":"230","5":"3.23","6":"5.345","7":"17.42","8":"0","9":"0","10":"3","11":"4","_rn_":"Chrysler Imperial"},{"1":"32.4","2":"4","3":"78.7","4":"66","5":"4.08","6":"2.200","7":"19.47","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat 128"},{"1":"30.4","2":"4","3":"75.7","4":"52","5":"4.93","6":"1.615","7":"18.52","8":"1","9":"1","10":"4","11":"2","_rn_":"Honda Civic"},{"1":"33.9","2":"4","3":"71.1","4":"65","5":"4.22","6":"1.835","7":"19.90","8":"1","9":"1","10":"4","11":"1","_rn_":"Toyota Corolla"},{"1":"21.5","2":"4","3":"120.1","4":"97","5":"3.70","6":"2.465","7":"20.01","8":"1","9":"0","10":"3","11":"1","_rn_":"Toyota Corona"},{"1":"15.5","2":"8","3":"318.0","4":"150","5":"2.76","6":"3.520","7":"16.87","8":"0","9":"0","10":"3","11":"2","_rn_":"Dodge Challenger"},{"1":"15.2","2":"8","3":"304.0","4":"150","5":"3.15","6":"3.435","7":"17.30","8":"0","9":"0","10":"3","11":"2","_rn_":"AMC Javelin"},{"1":"13.3","2":"8","3":"350.0","4":"245","5":"3.73","6":"3.840","7":"15.41","8":"0","9":"0","10":"3","11":"4","_rn_":"Camaro Z28"},{"1":"19.2","2":"8","3":"400.0","4":"175","5":"3.08","6":"3.845","7":"17.05","8":"0","9":"0","10":"3","11":"2","_rn_":"Pontiac Firebird"},{"1":"27.3","2":"4","3":"79.0","4":"66","5":"4.08","6":"1.935","7":"18.90","8":"1","9":"1","10":"4","11":"1","_rn_":"Fiat X1-9"},{"1":"26.0","2":"4","3":"120.3","4":"91","5":"4.43","6":"2.140","7":"16.70","8":"0","9":"1","10":"5","11":"2","_rn_":"Porsche 914-2"},{"1":"30.4","2":"4","3":"95.1","4":"113","5":"3.77","6":"1.513","7":"16.90","8":"1","9":"1","10":"5","11":"2","_rn_":"Lotus Europa"},{"1":"15.8","2":"8","3":"351.0","4":"264","5":"4.22","6":"3.170","7":"14.50","8":"0","9":"1","10":"5","11":"4","_rn_":"Ford Pantera L"},{"1":"19.7","2":"6","3":"145.0","4":"175","5":"3.62","6":"2.770","7":"15.50","8":"0","9":"1","10":"5","11":"6","_rn_":"Ferrari Dino"},{"1":"15.0","2":"8","3":"301.0","4":"335","5":"3.54","6":"3.570","7":"14.60","8":"0","9":"1","10":"5","11":"8","_rn_":"Maserati Bora"},{"1":"21.4","2":"4","3":"121.0","4":"109","5":"4.11","6":"2.780","7":"18.60","8":"1","9":"1","10":"4","11":"2","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10],"total":[11]},"rows":{"min":[10],"max":[10],"total":[32]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
+<pre class="r"><code>NA</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2tpbXI6OnNraW0oc3RhcndhcnMpXG5gYGAifQ== -->
+<pre class="r"><code>skimr::skim(starwars)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiLS0gRGF0YSBTdW1tYXJ5IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgVmFsdWVzICBcbk5hbWUgICAgICAgICAgICAgICAgICAgICAgIHN0YXJ3YXJzXG5OdW1iZXIgb2Ygcm93cyAgICAgICAgICAgICA4NyAgICAgIFxuTnVtYmVyIG9mIGNvbHVtbnMgICAgICAgICAgMTQgICAgICBcbl9fX19fX19fX19fX19fX19fX19fX19fICAgICAgICAgICAgXG5Db2x1bW4gdHlwZSBmcmVxdWVuY3k6ICAgICAgICAgICAgIFxuICBjaGFyYWN0ZXIgICAgICAgICAgICAgICAgOCAgICAgICBcbiAgbGlzdCAgICAgICAgICAgICAgICAgICAgIDMgICAgICAgXG4gIG51bWVyaWMgICAgICAgICAgICAgICAgICAzICAgICAgIFxuX19fX19fX19fX19fX19fX19fX19fX19fICAgICAgICAgICBcbkdyb3VwIHZhcmlhYmxlcyAgICAgICAgICAgIE5vbmUgICAgXG5cbi0tIFZhcmlhYmxlIHR5cGU6IGNoYXJhY3RlciAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cbiMgQSB0aWJibGU6IDggeCA4XG4gIHNraW1fdmFyaWFibGUgbl9taXNzaW5nIGNvbXBsZXRlX3JhdGUgICBtaW4gICBtYXggZW1wdHkgbl91bmlxdWUgd2hpdGVzcGFjZVxuKiA8Y2hyPiAgICAgICAgICAgICA8aW50PiAgICAgICAgIDxkYmw+IDxpbnQ+IDxpbnQ+IDxpbnQ+ICAgIDxpbnQ+ICAgICAgPGludD5cbjEgbmFtZSAgICAgICAgICAgICAgICAgIDAgICAgICAgICAxICAgICAgICAgMyAgICAyMSAgICAgMCAgICAgICA4NyAgICAgICAgICAwXG4yIGhhaXJfY29sb3IgICAgICAgICAgICA1ICAgICAgICAgMC45NDMgICAgIDQgICAgMTMgICAgIDAgICAgICAgMTIgICAgICAgICAgMFxuMyBza2luX2NvbG9yICAgICAgICAgICAgMCAgICAgICAgIDEgICAgICAgICAzICAgIDE5ICAgICAwICAgICAgIDMxICAgICAgICAgIDBcbjQgZXllX2NvbG9yICAgICAgICAgICAgIDAgICAgICAgICAxICAgICAgICAgMyAgICAxMyAgICAgMCAgICAgICAxNSAgICAgICAgICAwXG41IHNleCAgICAgICAgICAgICAgICAgICA0ICAgICAgICAgMC45NTQgICAgIDQgICAgMTQgICAgIDAgICAgICAgIDQgICAgICAgICAgMFxuNiBnZW5kZXIgICAgICAgICAgICAgICAgNCAgICAgICAgIDAuOTU0ICAgICA4ICAgICA5ICAgICAwICAgICAgICAyICAgICAgICAgIDBcbjcgaG9tZXdvcmxkICAgICAgICAgICAgMTAgICAgICAgICAwLjg4NSAgICAgNCAgICAxNCAgICAgMCAgICAgICA0OCAgICAgICAgICAwXG44IHNwZWNpZXMgICAgICAgICAgICAgICA0ICAgICAgICAgMC45NTQgICAgIDMgICAgMTQgICAgIDAgICAgICAgMzcgICAgICAgICAgMFxuXG4tLSBWYXJpYWJsZSB0eXBlOiBsaXN0IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4jIEEgdGliYmxlOiAzIHggNlxuICBza2ltX3ZhcmlhYmxlIG5fbWlzc2luZyBjb21wbGV0ZV9yYXRlIG5fdW5pcXVlIG1pbl9sZW5ndGggbWF4X2xlbmd0aFxuKiA8Y2hyPiAgICAgICAgICAgICA8aW50PiAgICAgICAgIDxkYmw+ICAgIDxpbnQ+ICAgICAgPGludD4gICAgICA8aW50PlxuMSBmaWxtcyAgICAgICAgICAgICAgICAgMCAgICAgICAgICAgICAxICAgICAgIDI0ICAgICAgICAgIDEgICAgICAgICAgN1xuMiB2ZWhpY2xlcyAgICAgICAgICAgICAgMCAgICAgICAgICAgICAxICAgICAgIDExICAgICAgICAgIDAgICAgICAgICAgMlxuMyBzdGFyc2hpcHMgICAgICAgICAgICAgMCAgICAgICAgICAgICAxICAgICAgIDE3ICAgICAgICAgIDAgICAgICAgICAgNVxuXG4tLSBWYXJpYWJsZSB0eXBlOiBudW1lcmljIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4jIEEgdGliYmxlOiAzIHggMTFcbiAgc2tpbV92YXJpYWJsZSBuX21pc3NpbmcgY29tcGxldGVfcmF0ZSAgbWVhbiAgICBzZCAgICBwMCAgIHAyNSAgIHA1MCAgIHA3NSAgcDEwMCBoaXN0IFxuKiA8Y2hyPiAgICAgICAgICAgICA8aW50PiAgICAgICAgIDxkYmw+IDxkYmw+IDxkYmw+IDxkYmw+IDxkYmw+IDxkYmw+IDxkYmw+IDxkYmw+IDxjaHI+XG4xIGhlaWdodCAgICAgICAgICAgICAgICA2ICAgICAgICAgMC45MzEgMTc0LiAgIDM0LjggICAgNjYgMTY3ICAgICAxODAgMTkxICAgICAyNjQg4paB4paB4paH4paF4paBXG4yIG1hc3MgICAgICAgICAgICAgICAgIDI4ICAgICAgICAgMC42NzggIDk3LjMgMTY5LiAgICAgMTUgIDU1LjYgICAgNzkgIDg0LjUgIDEzNTgg4paH4paB4paB4paB4paBXG4zIGJpcnRoX3llYXIgICAgICAgICAgIDQ0ICAgICAgICAgMC40OTQgIDg3LjYgMTU1LiAgICAgIDggIDM1ICAgICAgNTIgIDcyICAgICA4OTYg4paH4paB4paB4paB4paBXG4ifQ== -->
+<pre><code>-- Data Summary ------------------------
+                           Values  
+Name                       starwars
+Number of rows             87      
+Number of columns          14      
+_______________________            
+Column type frequency:             
+  character                8       
+  list                     3       
+  numeric                  3       
+________________________           
+Group variables            None    
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KYGBge3J9DQpsaWJyYXJ5KCJsdWJyaWRhdGUiKQ0KDQp0b2RheSgpDQpub3coKQ0KDQoNCg0KDQpgYGANCmBgYHtyfQ0KeW1kKCIyMDIwLTEyLTAxIikNCmBgYA0KDQo=</div>
+-- Variable type: character ---------------------------------------------------------------------------------
+# A tibble: 8 x 8
+  skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+* &lt;chr&gt;             &lt;int&gt;         &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;
+1 name                  0         1         3    21     0       87          0
+2 hair_color            5         0.943     4    13     0       12          0
+3 skin_color            0         1         3    19     0       31          0
+4 eye_color             0         1         3    13     0       15          0
+5 sex                   4         0.954     4    14     0        4          0
+6 gender                4         0.954     8     9     0        2          0
+7 homeworld            10         0.885     4    14     0       48          0
+8 species               4         0.954     3    14     0       37          0
+
+-- Variable type: list --------------------------------------------------------------------------------------
+# A tibble: 3 x 6
+  skim_variable n_missing complete_rate n_unique min_length max_length
+* &lt;chr&gt;             &lt;int&gt;         &lt;dbl&gt;    &lt;int&gt;      &lt;int&gt;      &lt;int&gt;
+1 films                 0             1       24          1          7
+2 vehicles              0             1       11          0          2
+3 starships             0             1       17          0          5
+
+-- Variable type: numeric -----------------------------------------------------------------------------------
+# A tibble: 3 x 11
+  skim_variable n_missing complete_rate  mean    sd    p0   p25   p50   p75  p100 hist 
+* &lt;chr&gt;             &lt;int&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+1 height                6         0.931 174.   34.8    66 167     180 191     264 ▁▁▇▅▁
+2 mass                 28         0.678  97.3 169.     15  55.6    79  84.5  1358 ▇▁▁▁▁
+3 birth_year           44         0.494  87.6 155.      8  35      52  72     896 ▇▁▁▁▁</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXRjYXJzICU+JVxuICBzZWxlY3QoZGlzcCxjeWwpXG5gYGAifQ== -->
+<pre class="r"><code>mtcars %&gt;%
+  select(disp,cyl)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MzIsIm5jb2wiOjJ9LCJyZGYiOiJINHNJQUFBQUFBQUFCcDFVM1c3VE1CVE91blUvWmFzS3UrSFNMOUNxVFR2WUpDNEs2YXFCTnFtc2FLdEFtdVFtM21yTjh3bU8wMUYrSkY0RG5vR0g0SW9ya0hnRUhvQUxKTzRIVG5PY2prd1RDRXZXNS9NZG4xK2ZaTDh6YUpZR0pjZHg1cDBGcytlTDV1Z3NlcjJHdStFNnprTEJTSE5HczVMZ0MzTnIzUndTc213MmFRZk9kR1g0RERFa0tZN2ZwaWh5OHZEZ09GbHQraTVaNzl2QnoyYXlNbngrNzdOWlg2N2dHN1IvL1RIRlZ5ajNQNlQ2L2U4cFB2NlUrajlhVERINmx0NkxNTDhZNVFuS2ZmUjN0SjdHUDBUNytBZm1pL21ycjNpdjdlQksrM0FiL1ZpczVHUnlqVnk1NW43KzNyOWkzbDhlLzlmK0wvbm5CcVVvNlJsTFdwMm9DMGd1QkR3SzhUenZUMFRPWmtYQmVlMnlIYkdLUGZveW9HUi8wRUppTFNQSUlUMUJzdFNoT29vbHVkdW9JMVBlQVNXWkppM1NVWHpNa0wySmJEOEVwZWtRWW8yS3BRTXFPSlU2OHhkSG1pblN2RlBQOG1ES0oyNnIza0ZpT1NXYTlUL2x6WnpCWnQyelBxZEVhNlBlMzc3QzdDSnpZOFpZczFzZURiZ1ExQ2Rkd1pnK0J3aFFzNzdMcFE5Q0VnK2s1cEpKVFlXdDB4dXBTU1JNQlEvUFFxWjRwbGp1Y3FwSnc5MjBBWGRBbW01NmZNeDkyN2tuTUFGdE9GQmc0dHEyWDJLbEpTc2RDRTRZOFVaVUNDWlBtTEplNys5NTVCRWRNOEdscmRXaloxUUJlWnFGcnZTU3RKTzZ1R0pEcm14Wks5TVVCNDNxbGczZEF4WDVJMGEyR3EycWkrVHFMdWc0SXR1eGd0Q21VKzZDQ2tqUFBDTlRsTmllcm5hWlVsUngwdUVTWmtNVW1UdWFrd2VnckhucEFNUVlTS1BsYnVjbjJoYzBzcE5weVZKQU5hMGRLek8wUnJySW1TeEJxRGxJWTFSSS9wbkZuUEdjeWhHVldDYmpIMVQ5VVN4UHEyNHppVERWcDNzTmtWdzZGOUtZaFYvb3E0aStGczFibUhtd3lRczZaUGI5eStZN20zNW10VkR4MmJnYk5xcHBtQTFReVF5V1phYkZPUmUvQVdOM2lxY3NCZ0FBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["disp"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"160.0","2":"6","_rn_":"Mazda RX4"},{"1":"160.0","2":"6","_rn_":"Mazda RX4 Wag"},{"1":"108.0","2":"4","_rn_":"Datsun 710"},{"1":"258.0","2":"6","_rn_":"Hornet 4 Drive"},{"1":"360.0","2":"8","_rn_":"Hornet Sportabout"},{"1":"225.0","2":"6","_rn_":"Valiant"},{"1":"360.0","2":"8","_rn_":"Duster 360"},{"1":"146.7","2":"4","_rn_":"Merc 240D"},{"1":"140.8","2":"4","_rn_":"Merc 230"},{"1":"167.6","2":"6","_rn_":"Merc 280"},{"1":"167.6","2":"6","_rn_":"Merc 280C"},{"1":"275.8","2":"8","_rn_":"Merc 450SE"},{"1":"275.8","2":"8","_rn_":"Merc 450SL"},{"1":"275.8","2":"8","_rn_":"Merc 450SLC"},{"1":"472.0","2":"8","_rn_":"Cadillac Fleetwood"},{"1":"460.0","2":"8","_rn_":"Lincoln Continental"},{"1":"440.0","2":"8","_rn_":"Chrysler Imperial"},{"1":"78.7","2":"4","_rn_":"Fiat 128"},{"1":"75.7","2":"4","_rn_":"Honda Civic"},{"1":"71.1","2":"4","_rn_":"Toyota Corolla"},{"1":"120.1","2":"4","_rn_":"Toyota Corona"},{"1":"318.0","2":"8","_rn_":"Dodge Challenger"},{"1":"304.0","2":"8","_rn_":"AMC Javelin"},{"1":"350.0","2":"8","_rn_":"Camaro Z28"},{"1":"400.0","2":"8","_rn_":"Pontiac Firebird"},{"1":"79.0","2":"4","_rn_":"Fiat X1-9"},{"1":"120.3","2":"4","_rn_":"Porsche 914-2"},{"1":"95.1","2":"4","_rn_":"Lotus Europa"},{"1":"351.0","2":"8","_rn_":"Ford Pantera L"},{"1":"145.0","2":"6","_rn_":"Ferrari Dino"},{"1":"301.0","2":"8","_rn_":"Maserati Bora"},{"1":"121.0","2":"4","_rn_":"Volvo 142E"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[32]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbk5BXG5gYGAifQ== -->
+<pre class="r"><code>NA
+NA</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGRhdGEgPSBtdGNhcnMsbWFwcGluZyA9IGFlcyh4ID0gZGlzcCwgeT0gY3lsKSkgK1xuZ2VvbV9wb2ludCgpXG5gYGAifQ== -->
+<pre class="r"><code>ggplot(data = mtcars,mapping = aes(x = disp, y= cyl)) +
+geom_point()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-plot-begin eyJoZWlnaHQiOjQzMi42MzI5LCJ3aWR0aCI6NzAwLCJzaXplX2JlaGF2aW9yIjowLCJjb25kaXRpb25zIjpbXX0= -->
+<p><img src="data:image/png;base64,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rCReUqwkXlKsJF5SrCReUqwkXlKsJF5SrCReUqwkXlKsJF5SrCReUqwkXlKsJF5SrCReUqwkXlKsJF5SrCReUqwkXlKsJF5SrCReUqwkXlKsJF5SrCReUqwkXlKsJF5SrCReUqwkXlKsJF5SrCReUqwkXlKs1CHe416v9/yLeEmlSR3iPTqw85JKlBbHe/7xULykEqXF8Q5e18eGdvN9XM/sDdqYLc3sePsvDyd23xX9iivnVy8pV1ocbzuX594VLbqcF4CUK4mXFCstjvd052R4/i+XykjFSR123uNe79nlBYcVLbqcF4CUK3U8NlzOihZdzgtAypXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipWWjdeY4sbOS4qTxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVOsV7/uFAvKTipE7xHve6xVtV1cWH8c1Zd5lc9s27VtWsh19/wOhGKS8ladNSl3j7f/9Hp3jHzVUXM/suk8u+edfZD7/+gPGNUl5K0qalDvGef/zv6NjwuJ55G3Qb0/jD6Oasu8z/odkPv/6Aufcy92fmRHC83/HMa+clbVRaHG//1UnXN2zOvKRNSovjPe41s98l3qWemERyqYx0XyXxkmKlTvFOzIoWXc4LQMqVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlcRLipXES4qVxEuKlZaNd2Uz96+1b2msqduUtibxDq2p65S2JvEOranrlLYm8Q6tqeuUtib/kNHEjnhN7IjXxI54TeyI18TOxuLt/+3LcDh43ds5ufyw5env9ZqvxVbUmk57veelvU7jf4hb2Jqa2VS8p80npXkRjn+/+LDlGbw5HPZfHha1puZX+NViyljTcPQFF0tbUzMbivfo2X/qz8vg7Zfm8zP+sJlnnjmnzafg6KCoNTVztZhS1tR+wcXC1tTORo8N/VcnzYY3/rCpZ54zV4spZ031vlbWmkZfcLGsNY1mo/Ge7rT/5+MPm3rm2XP+Yb+0NfX3nh0WtqbRF1wsa02juc877+D1/rC0NZX3u8H4Cy4WtabxbDTess5N/b3mi1mVtaZmCjuHj7/gYlFrGs9G421+m27fse4X8I511G5Zaxr/plzUmoajS2WlramZ+3udd7SjHBS1pmZR9Zm3rDW5zmvMyke8JnbEa2JHvCZ2xGtiR7wmdsS7ifn28PP3X99vexU/3Yh3E1PHu+0l/Iwj3k2MeNcy4l33nO1WD/4YHRu+P6mq6sXw+69/VNUvf257Yfkj3jXP2e7T+lsbb3vs/f7kxfcnDz//ePdo2yvLH/GuedoTw9dRvL+NDg91v/V/vIG784h3zfO1OR/U2TaxfqqqZr9tuz3bfbHtpcWPeNc8k/G2B+DxVTPx3n3Eu+Zpjw0T13nraEfHht9cgLjriHfNc7b76OINW9txc/b1hm01I951z8Slsm9VVT14P7pUpt27j3g3Py40rGjEu/kR74pGvJsf8a5oxGtiR7wmdsRrYke8JnbEa2JHvCZ2xGti5/9xKM5T6wWh/QAAAABJRU5ErkJggg==" /></p>
+<!-- rnb-plot-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRhdGEgVmlzdWFsaXphdGlvbiINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCndlIHdpbGwgdXNlIHRpZHl2ZXJzZSBwYWNrYWdlDQpwYWNrYWdlIG5hbWUgaXMgOiBnZ3Bsb3QyDQpgYGB7cn0NCmxpYnJhcnkoZ2dwbG90MikNCmxpYnJhcnkoZHBseXIpDQpsaWJyYXJ5KHNraW1yKQ0KYGBgDQoNCmBgYHtyfQ0KbXRjYXJzDQoNCmBgYA0KDQpgYGB7cn0NCnNraW1yOjpza2ltKHN0YXJ3YXJzKQ0KYGBgDQoNCmBgYHtyfQ0KbXRjYXJzICU+JQ0KICBzZWxlY3QoZGlzcCxjeWwpDQoNCg0KYGBgDQoNCmBgYHtyfQ0KZ2dwbG90KGRhdGEgPSBtdGNhcnMsbWFwcGluZyA9IGFlcyh4ID0gZGlzcCwgeT0gY3lsKSkgKw0KZ2VvbV9wb2ludCgpDQpgYGANCg0K</div>
 
 
 
@@ -1875,7 +1966,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("Dates & Times in R.Rmd");
+  window.initializeSourceEmbed("data visualization in R.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

@@ -1812,23 +1812,41 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShcImx1YnJpZGF0ZVwiKVxuXG50b2RheSgpXG5ub3coKVxuXG5cblxuXG5gYGAifQ== -->
-<pre class="r"><code>library(&quot;lubridate&quot;)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShEQkkpXG5saWJyYXJ5KFJTUUxpdGUpXG5gYGAifQ== -->
+<pre class="r"><code>library(DBI)
+library(RSQLite)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5cbmNvbiA8LSBkYkNvbm5lY3QoUlNRTGl0ZTo6U1FMaXRlKCksZGJuYW1lPVwiOm1lbW9yeTpcIilcblxuYGBgIn0= -->
+<pre class="r"><code>
 
-today()
-now()
+con &lt;- dbConnect(RSQLite::SQLite(),dbname=&quot;:memory:&quot;)
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueW1kKFwiMjAyMC0xMi0wMVwiKVxuYGBgIn0= -->
-<pre class="r"><code>ymd(&quot;2020-12-01&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kYkxpc3RUYWJsZXMoY29uKVxuYGBgIn0= -->
+<pre class="r"><code>
+dbListTables(con)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiY2hhcmFjdGVyKDApXG4ifQ== -->
+<pre><code>character(0)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGJXcml0ZVRhYmxlKGNvbixcIm10Y2Fyc190YWJsZTRcIixtdGNhcnMpXG5gYGAifQ== -->
+<pre class="r"><code>dbWriteTable(con,&quot;mtcars_table4&quot;,mtcars)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KYGBge3J9DQpsaWJyYXJ5KCJsdWJyaWRhdGUiKQ0KDQp0b2RheSgpDQpub3coKQ0KDQoNCg0KDQpgYGANCmBgYHtyfQ0KeW1kKCIyMDIwLTEyLTAxIikNCmBgYA0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkoREJJKQ0KbGlicmFyeShSU1FMaXRlKQ0KYGBgDQoNCg0KYGBge3J9DQoNCg0KY29uIDwtIGRiQ29ubmVjdChSU1FMaXRlOjpTUUxpdGUoKSxkYm5hbWU9IjptZW1vcnk6IikNCg0KYGBgDQoNCg0KYGBge3J9DQoNCmRiTGlzdFRhYmxlcyhjb24pDQoNCmBgYA0KYGBge3J9DQpkYldyaXRlVGFibGUoY29uLCJtdGNhcnNfdGFibGU0IixtdGNhcnMpDQpgYGANCg0K</div>
 
 
 
@@ -1875,7 +1893,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("Dates & Times in R.Rmd");
+  window.initializeSourceEmbed("Database with R.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

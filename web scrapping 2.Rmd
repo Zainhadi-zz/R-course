@@ -1,0 +1,58 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+
+library(dplyr)
+library(rvest)
+library(stringr)
+library(tibble)
+
+
+```
+
+```{r}
+url <- "https://timesofindia.indiatimes.com/entertainment/hindi/bollywood/top-20-best-bollywood-movies-of-2020"
+
+top_movies <- read_html(url)
+```
+
+```{r}
+titles <- top_movies %>%
+  html_nodes(".main-content h2") %>%
+  html_text() %>%
+  str_trim() %>%
+  str_split("\n") %>%
+   lapply(function(movies){movies[1]}) %>%
+  unlist() %>%
+  str_trim()
+  
+
+
+
+```
+
+```{r}
+ratings <- top_movies %>%
+  html_nodes(".topten_ratemovie") %>%
+  html_text() 
+
+```
+```{r}
+No. <- 1:20
+```
+```{r}
+top_movies_hindi_2020 <- tibble(
+   No. = No.,
+  Name = titles,
+  Rating = ratings
+  
+  
+)
+
+top_movies_hindi_2020
+
+```
+

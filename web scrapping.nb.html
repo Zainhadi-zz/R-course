@@ -11,7 +11,7 @@
 
 
 
-<title>R Notebook</title>
+<title>Web Scrapping</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1804,31 +1804,169 @@ summary {
 
 
 
-<h1 class="title toc-ignore">R Notebook</h1>
+<h1 class="title toc-ignore">Web Scrapping</h1>
 
 </div>
 
 
 <!-- rnb-text-begin -->
+<p>Package name: {rvest}</p>
+<p>Website we will scrap data: <a href="https://www.imdb.com/chart/top/" class="uri">https://www.imdb.com/chart/top/</a></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShcImx1YnJpZGF0ZVwiKVxuXG50b2RheSgpXG5ub3coKVxuXG5cblxuXG5gYGAifQ== -->
-<pre class="r"><code>library(&quot;lubridate&quot;)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShydmVzdClcblxudXJsIDwtIFwiaHR0cHM6Ly93d3cuaW1kYi5jb20vY2hhcnQvdG9wL1wiXG5cblxudG9wX21vdmllcyA8LSByZWFkX2h0bWwodXJsKSBcblxuXG5gYGAifQ== -->
+<pre class="r"><code>library(rvest)
 
-today()
-now()
+url &lt;- &quot;https://www.imdb.com/chart/top/&quot;
+
+
+top_movies &lt;- read_html(url) 
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>class (“.name”) id (“#name”)</p>
+<p>Movie Titles</p>
+<!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueW1kKFwiMjAyMC0xMi0wMVwiKVxuYGBgIn0= -->
-<pre class="r"><code>ymd(&quot;2020-12-01&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmxpYnJhcnkoc3RyaW5ncilcblxudGl0bGVzIDwtdG9wX21vdmllcyAlPiVcbiAgaHRtbF9ub2RlcyhcInRib2R5IHRyIHRkLnRpdGxlQ29sdW1uXCIpICU+JVxuICBodG1sX3RleHQoKSAlPiVcbiAgc3RyX3RyaW0oKSAlPiVcbiAgc3Ryc3BsaXQoXCJcXG5cIikgJT4lXG4gIGxhcHBseShmdW5jdGlvbihtb3ZpZXMpe21vdmllc1syXX0pICU+JVxuICB1bmxpc3QoKSAlPiVcbiAgc3RyX3RyaW0oKVxuXG5gYGAifQ== -->
+<pre class="r"><code>library(dplyr)
+library(stringr)
+
+titles &lt;-top_movies %&gt;%
+  html_nodes(&quot;tbody tr td.titleColumn&quot;) %&gt;%
+  html_text() %&gt;%
+  str_trim() %&gt;%
+  strsplit(&quot;\n&quot;) %&gt;%
+  lapply(function(movies){movies[2]}) %&gt;%
+  unlist() %&gt;%
+  str_trim()
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Movie Years</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG55ZWFycyA8LXRvcF9tb3ZpZXMgJT4lXG4gIGh0bWxfbm9kZXMoXCJ0Ym9keSB0ciB0ZC50aXRsZUNvbHVtblwiKSAlPiVcbiAgaHRtbF90ZXh0KCkgJT4lXG4gIHN0cl90cmltKCkgJT4lXG4gIHN0cnNwbGl0KFwiXFxuXCIpICU+JVxuICBsYXBwbHkoZnVuY3Rpb24obW92aWVzKXttb3ZpZXNbM119KSAlPiVcbiAgdW5saXN0KCkgJT4lXG4gIHN0cl90cmltKCkgJT4lXG4gIHN0cl9yZXBsYWNlKFwiXFxcXChcIixcIlwiKSAlPiVcbiAgc3RyX3JlcGxhY2UoXCJcXFxcKVwiLFwiXCIpICU+JVxuICBhcy5pbnRlZ2VyKClcblxuXG5gYGAifQ== -->
+<pre class="r"><code>
+years &lt;-top_movies %&gt;%
+  html_nodes(&quot;tbody tr td.titleColumn&quot;) %&gt;%
+  html_text() %&gt;%
+  str_trim() %&gt;%
+  strsplit(&quot;\n&quot;) %&gt;%
+  lapply(function(movies){movies[3]}) %&gt;%
+  unlist() %&gt;%
+  str_trim() %&gt;%
+  str_replace(&quot;\\(&quot;,&quot;&quot;) %&gt;%
+  str_replace(&quot;\\)&quot;,&quot;&quot;) %&gt;%
+  as.integer()
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Ranks</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmFua3MgPC0gMToyNTBcblxuYGBgIn0= -->
+<pre class="r"><code>ranks &lt;- 1:250
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Ratings</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmF0aW5ncyA8LSB0b3BfbW92aWVzICU+JVxuICBodG1sX25vZGVzKFwiLmltZGJSYXRpbmcgc3Ryb25nXCIpICU+JVxuICBodG1sX3RleHQoKSAlPiVcbiAgYXMubnVtZXJpYygpXG5cbmBgYCJ9 -->
+<pre class="r"><code>ratings &lt;- top_movies %&gt;%
+  html_nodes(&quot;.imdbRating strong&quot;) %&gt;%
+  html_text() %&gt;%
+  as.numeric()
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudG9wX21vdmllc190aWJibGUgPC10aWJibGUoXG4gIFJhbmsgPSByYW5rcyxcbiAgTmFtZSA9IHRpdGxlcyxcbiAgWWVhID0geWVhcnMsXG4gIFJhdGluZyA9IHJhdGluZ3NcbiAgXG4gIFxuKVxuXG5gYGAifQ== -->
+<pre class="r"><code>top_movies_tibble &lt;-tibble(
+  Rank = ranks,
+  Name = titles,
+  Yea = years,
+  Rating = ratings
+  
+  
+)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudG9wX21vdmllc190aWJibGUgJT4lXG4gIGFycmFuZ2UoZGVzYyh5ZWFycykpXG5gYGAifQ== -->
+<pre class="r"><code>top_movies_tibble %&gt;%
+  arrange(desc(years))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MjUwLCJuY29sIjo0fSwicmRmIjoiSDRzSUFBQUFBQUFBQnBXYWQzeWJ4M25IRVZrYzRoS0hKYy9VSjZXT21sUmtUU21KRzNVSklEaEFBaVFMUUtTVnpnUGVJM0RFaS9mZ2U5K1hFTlRsTm5zMmJiYXp0NTNkUnJIanhGbG1kdXpzdlhjejI2UzcvaVB1NzE2OGQzajFHakFUNnZNVmdIZmNQZmZzZTRGOCtvYVRRemNNSlJLSlN4TDd3U1Y5ZUp2b24xdWZQZkhJRTRuRS9uMzQ5Q0NjT2FCZXorR3FLYnpaRDBiQnZlQlI0QTd3YStCM1FSWnc4QnJ3VWZCemNCck1neno0YTdBTFZzRHp3SmZCZjRCbFFNRjd3WmZBZjRLWGdIOEdud0RmQXY4TEhneW13ZHZBbmVCZDRPbmcvZUFlOExWUXJsTmdFZndwK0NFNERtNEVyd0NmQmY4VnJrRUFGendmZkFTc2d6T2dCZjRldkJOOElWeno3NE8zZ2h2QU04R0x3RmZBYjRMZkFyOERuZ0YrQ3Y0V3ZCQzhHUHdaZUN4NEV2Z2srQzc0VnpBQTVzQ3Q0STNneldBTUhBWVBBZThEeWpSWGdRWjRLdmdCZUJpNEh2d1JxSUR2Z1g4RHcyQWNYQTF5NEpYZ1N2QlE4QS9ndGVBRDRCQklnMDN3bCtCeDRGWGduOERId0tXQWdGWHdoK0F2d0ZQQWU4QzNFOG9oRW9sQk1BS3VBVWRCUDNnMWVBYzRDeDRQTGdQWGdnbHdIbndhekFBNFZ1S3Z3RCtDcjRJUytHK1FBWjhCWHdTL0R1cmdpV0FKRk1HUHdNL0FCdGdHTHdldkIvOEhIZzNXd0VId0IrQlo0R1hnRWVDUjRBM2dHK0R0NE4zZ0NtQ0RUNEYvQVpQZ2I4RGRDUlVLaWNUTlFBSVZBRlh3Sm5BZGVBejRQRkFCY1JmNFB2Z2Y0SU1GVUFCUEEwZUFBeEF6aVp2QXM4RnZnQjJ3Qlo0QVBnZStDZjRZcUxqN1BaQUNMd1d2QTI4QlB3RXE1azZDNTRMYndPM2c2OEFDTlpBRWZ3ZWVEQzZBTW5nT3VCdzB3U3o0RVBoejhOdmd4K0FXOEhGd0RQdzdlRGo0RS9BZDRJRVBneGVBRHdLV2FQdlZ2V0VpR0Z5aWRXNTd3Z2svN3k4STN3N2ZqeXh5bHpLblVxNzZUaVU4MXJjc2FreUdIeWFTT3pqTnBIdUt6RHRXaGRhWkhtWDIwYlBYNnp0V2JPcTc0WWV4QlNFdHNrTVdtSlJVOHZEb2tYVWhQVW01Unl4R2JFcTJtZTh3c3NWdG14SG1rQzNtaHhjZTdreVljYmE0dzcwVzJhUmFuQ09GQnJlWW5NNVJSNTMzQlBHcWpJUUhOM0FYRm4rVHVuQjRqamFxVkRwMDk4NTZlTy9Rb21TWUtpVkVMVHh5SU9sWVZXcGg3WHBSYzZJc3d2Y1BLMVp4UFVsQnhKS2cwbkxKbXUrNW1Jak1sMHJjcVJ3bk9lNjZ3amRMN011S0N0VWpqV3p3bXFSMXNzRXdnOWJNQ3E5ejRnamlVTktrTStIUi9qUjFLbFFiWkhTSmxtc3ViWkk4dHlyTXlGbWRydEJwMTlWVGpjd0pCOXIwT0tzM3RMeERHU2VRRGxMcTFlU0YwSXVmekZHTDVPaTVVMlRCbHkyU0Y5VFNneGNhd3JONXBhcHZHMHhMN2xaYlZOODZBajFEc3g2emJXT0h3YzBxYjlqVXJZYWZ4L1BNcHA1d2lVdnRIYnJOdEROY1hvUjVGaVYxTEpMeUxkcGdya2VXQkliU2t5OEt1TUVpbC9yQVplcUdUV0Z2RWJFRnU5czJLWGd3ZzVidHdEcGt3eTFTVHpBK2U0S2NaVlM2aEpLQ1RYZU1lK1o5STl3d3ZNV0NLOEtaOUtMSDA5dlF1aUJubkhLVmNvZnA0NGZVOUdrcWEyVEZVU3FCR1Z5em1QNWxXdkdZdHZEa0lrWncyMks2TG1zMWZLMmNjVFdJY2s0Zmc1ZHNjLzlseThLaWpMY1lXYVh3VjBMUGt3SThRZzg0QURlWFhPaFJqaS9oWTR1c0M4OVQxMEtEeXRYVGpIcFZ1MFdXb0JyUlJKQ3NVK21SRTlvc2F1WWxaamUwdWpKT21UVThibUovdUNoYTBLakF3Q2VqMXpnV04yS09GYXArTUdmR3RUR3R0dVNTYUJMRVd4RkI3SkN6OEh1U2xyUmlSaDQ4U1RJV0Y1NGU1ZEtNVTdGVmRBamZKU2tLOTBFSWhlZjJuZEVDSHA2M2ljdktrbUZrK0s2TGE4VzIwTmVONUNnRVZVdUg1NGJIcGhBZ1ZYNktKRWxhVkk2NXBFaHRiZk9ETWVPRnFXQmdNNW5OM25YN3ZGYUJja2RTRkpJN3doaU1Vc25JWTVEZGtDRFdqWmRQWVVBYzMwUUtJQ21rQWxzSXJZN0RxNExNQ1I5UjJDSmJRcEkxRzBJYTN4ZzFxUW4zNmx0R0F2RllBd1pqRngxYmx3Z0xicUpkelVxeWZJY0Z6cldHVVl5M0gxeW5EdGFjcGFVV3hQZTBneC9Nd3hVeHROSXpkVHlkSlVaVDFLdGpyU2xXNFk2eGJvcVdrSmQya0NncXRxOWpmR3dqV01VR0hJRjVuazVZMTg3RGFnNUZEUHFPVzBXWUtJSGFDUmNwZzdrdVVxQnhrTkUwWE9hTVNoWElncnFXWExwRWZlbXJuT2RYUk0wbkdFVnFyVS9sb0ZlNEpneXBNZ3VFTDdXMFdvSWNRZkpORmJobU5Rd2lza0FXa3crbUExMnBnaE5LbGtkbVJsU293M25tK2RMUkoxYTRFV29ReG1KK1NaaHN1b0JWNERSWlpYVXQzTVJLWUhUOGQ0cHNDSHVHekpyb29EWjNmRTVRTXBtcEpOYytnQnpGSnFKR05EdFdISnZqRmhLQWN2ZzBNM1Z6T0hBRlRoM3U2dFZOelZHdlhJVmZrY3lXQ2preVorckw3QU5NdU1DQzNJQU1IVDBaM3ZqZ0Fsd2N6amxYNWNvV3lqUTE5QWMxV2tQQzVEcGtrdlhkVzIydVBYSThDUitpdnNlM2ZEdHE4ckdjY0ZSZ3U4ZVI3c3E2b0IxWXRLbkZVUTEwR0Eza1dKMGhJUFNxOHV4R0g1VXI4RGlLTE1KTXFla3ZPR3JGMnVMSk9nenVrZ1k2Q1pNVHhoY29hYUY1cUJBSGVhaEo5Y1ZEQzBHK25yUDlrajZpZEpHam51UTZkNHkxcTVFS2N2aWVTUnZKT3BPOEhBUUtGcWw5TU1nbUJYN09xeEtvekRYUldhQTd5bGRRaUhhb0I5VzJqRTBtelVCTHNLSEtzVGVFWng2U0ZlWGFjWlY0eTdVZ255bWZLTlJGVFkyVVFwNW50aHVkdGloOUZiaUZxbWhHYTBxS1YwaVdsV0RibXJiVWVKYVNIZTVSc25zTEtha0tyWFVIMCtCZmpVMVh1ZW5aSmhhUndOcnBiQW1wcStNVUU5bVo1QXp5R1JvdUM1YmlwaDJaU0NIYnNpcWRQc3NJZFZuZHJIVTBxQU11OGtCa21MNEZLaXZhelAzemtMS2w1ZWtyc09zN3BWTXQ1b3pyQjVuRmJiQ3lxUnBES1lrYVhrVkJOeFhmVkN4ZDJaZFFBdlVjYzlUdHBQR3hUb1pBbDZBWFBRZ05CVFUrMnBJVXFoUUJRcDBhc29TRkppcFNJa2ZXZmJ0QkZuZzVlZ3c5clVyU1pOR3ZOMExOOTJWM2J4VWRkUVE1Rzhrc2ttZkdDNmhVam1VenFYSjJKNnhIbDMySmxvR1hWYW5SR2VTS2pCT0U2aXFLa0E3YkJhcVN2MTVkbnJsTTdnZ3VWZVV6Q2p2allNMFZWQXZub3ZYQnZWSFc5VUJaV2kvcE82NHNNb21tUThVbk9YR0tMUHRXUlVVbkNxZlc4SkJ5a3kzbFRQcWVveGtrU0lxMmRSbTlsMnVha1N6S09wbVR2b3RzcGsyTEJzVkMwOEk4bHhSRW1UTVRUMlBJNmJSZEM2cTBwdjNpMEtvdmRwQ05ZSjg2VmZwQTZuQzFRUWZUSE8wTWVtOFRCTUpCSDZlR0tBcklid3lmRm5WeUhvSEFVUDYyamJjditIRDBIUFBnWnN2b3FrM1JtR3dYWFE0Rm9ZU2xKRGZTOXllUjlFeXBIQzU0YXFXbEZnYlJxV3hkdGJuRzdKTUlqeG9KUy8yQ2ozcWpMeHhCTTBRNGNldkNNeHVFUy9JbWZLNWFVOVk1MDRERFVGSkVoQklrc3pCOTZLbVNkYWpWbElmTFYraDVwbFlPbVFJTnJGS1ZzSTBpUjZBN2prUmNaT2VNMlI2T0JVaTFlMUs3dHdiMGlvcXprU0hUc2RLNHpDd3Q0bUNoVE9VV0xadWRSNUNOcWgyZkhrblpxblRsZmNjeG5qbTFRQjJuUlFSS1ZkTEc5T2doOUtuTDhsUnR6VnpqaUFJZWt6Uk9QNWltcnRxUWFjdk1kQk1ZOGlvcDV1c05yb0liK3F3eDFWS1c5U2pEN1loR2UyL0VITTdUU3BCYjRRTFJERHB2TTJ3TDRlMDVZNHErd09iYWs1SU5VYVoycStFaUVrM3lIWUJZZG1kUFBKcmxXMEZvd1hYTU1PM21rNkVIVXFrVjE3YXp4TWpTN20ydWh5MEw3ZXdjRHBoVm1nWFFjeHlGRUZGc2F1WXE4NXJDS0tvdmo4cWhJK21hTlhSaUN6WnJralhjRU9oMXppL1hoRUNhV1dVbXpWeURFb0ROODNyTHF5bzNDMk4yU1dEM2dCYVltMGNBcVdDZmtXMDVsdkhydzBHaFJCSUlFbEM0eWNoa3RQem9IVlQrYURwUkx5bEVDc0hvUmZlYjhvanFqR1dvWlpFMU5PR200KzFMT3AyTnh0WGRRaU5vcFR0TE8zVGl1dXRtMVI2ZzBJQ3ZraldycFhaZ3ByMFNBZ1ZPTFRqcjEvUWMxMlJzVXZKUkVvOFRqbmNTVzV6MjJ6SkZDZHZScVdSZ0hkNEthNWtXeExFazQvQjM3T04ydEhaUVVVcTRpMVpzVGduaVBHbFhFTG1oeGEvQ0NPUkcxRFlVVG1JRnJhMVFTMmp3M1R2Q0FkSnBPYU1jV2FuQUZtakZCWFNzOWxjWmxIY3FzUjFWT1FWRnI0R3RNSXlqUERsWWpycFdxU0lsNnJyTG1TZ3lKMml0Y2NjMlYrK2kvbzVtaDNwazNpMWo2MjJjbVRVYXZybHNNa3ViVXRlS3BLUWxibEp6VVpDZ0M2WWtCN05CaUJKSEttNnY4c0RaM1F2YjNDbnRYdEJYbTBLQ0NWZVJDT3NsN0FSMFhsMTNXK1dxaUhwSFV1MkQxUFZhamxVaDBXb2gyUVp2bWgxamp4ZEVYUlhYR3RyZzRPbUJYa2lLT2ROTFp0ZDlPSXVzQUwxN1NCTFkwS0wrbElYZjBDRTJzTUVrOWxoYWhKSFpFeVRwVkdRcnNta2JXNGUzQnBscTBlNjBHMWR0Y3M5UmRVSjFxMTVRT0FSMnJINmtPNWhLTTQrNDJ6N3lIZ3p0c29yTjlONXp2RkQzYlUrcU5ubjNWYlp0U3REVlFUc24xVE1lSXB5d1IxZkJ2TktrT2hkZmtmYUo1RnY0aDcwR08wK3c0U0pWVWErYmpmcWx5SG5sSU8ycGV1RFNPdG9LZmZOd25xa2NnL2JEWkxHSk5QbzZrZ3NXa3ZObEowbFBySVVCaGh3bHR5Q3NsbjZ5dUh1aDF0cTlRT3FJbXdyMU9vL3pEbVdaZXRSRFZVWnVQOUJyTUdPSnFRSjhoVHZIZE9DaUJwaGttNmx4cVYxdnBMMlZ3NzU2eDVyUmZwV25iblgzUXIzVFdTWGhnY21TOE9IRzV1bk9hRmlXcEJWSjVGTlphcUU1UUR5V2VKbVhvV3hQWDkvZWh5RVdYRGltMmNSeTlZUVNBMWltYWgvS2VNZlVrNlJOb1dxWTJ1Mm9WSy85TUMxVUZzQldCeDJqZWk2cDJ5VTBvYlJrVThlVTdrbEVUa3BGTlh6WlU0R1pNbTNCSFBmNGVldy9WcWhwU0NjN2dacEcxeG5kT09WWmlaVTd3d1lQeTVvY1lkSit0TkRKbVRtVlVPcnF6S0tBbTJES1RhcDI3SlhPWTkrUkhLb3BpcjVLcVc1bnZVaVVqUVpUS1VkVmxkWEljOERoT2ZYc05hdU91S0YxanVaUWpPZlZnd0NVTUF0Tzc1ZXg1Mkk0Z0IzVjdtMFJuN29TT2JLaG1seDR0NlZhRExRSWNKVmpTVm5XYWtObkprVkQyUHlpSGZBaVpKR2R4Nkh0UW1KYkpQSThiNlNBb3FJcUNWbVdldE01VUF6MitPb1plL2hkMThCM1E3N3pBSHk3QzkrSzhjMHVmS01MWCsvQzE3cncxUmhmNmNLWHUvQ2xIbnd4d2hkaWZMNExuNHZ3MlI1OHBndWZqdkdwTG55eUI1L293c2U3Y0U4WDdvN3dzVDM0YUJjK0V1SERJUjhLK1NENFFNajd1N0FiY2xlRTkwVjRiNHozaEx3N3dydEM3b3p4emhqdkNMa0R2RDNDN1JGdUMza2J1QURlR3ZLV2tEZUROOFY0STNnRGVIM0k2eUxjR25KTHlHdGp2QWE4dWdldkJLK0k4ZktRbDRXOEpNS0x3WXRDYmdiUEI4OE5lUTU0ZHNpelFwNEpuZ0dlR3ZJazhFVHdCUEI0OERpZ3ZyZFYzOEhlZTVyY3JmN3VPVTFPQm4rbjFUZDYrT3NjZjRINnUvazAyUXIrekhYbXRkZjF2ZTdUeCtQMzY5ZjQvYjJ1aTh2UjQ3b2pzZGVlOSsyMXZyM1dHWjluai9HTzZQUHgxL2oxZStrejlubzBMbWN2dmNmbGljdXY3OWZ6N2JXdXVIeng2K0oyaWV1eHgzcTBubzdFL1ZOL0R1Ky9uOTVqY3UvcDEzSDU5TGp4ZVdQeTlwTHJmdXZZeTU1NzJMV25ITCtrM285cVBlcDF4ZlJtWHVOKzA4TytjWG5NK21MejkvU251Ri9FN2REREwzcmF1VWM4M20rOFh6R1BtVGp0cFJkOVBINitoei8wMHBQeHV4N25qOGJIQzg4ZjdUVmVqL2c2RXRkclhFKzk5S250M2t2L3ZleSt4M1Z4K3h5SjY3T1gzbnZwN1plOC9uN3l4UDB6TG1kOGZmSGp2Zkt0UHQ3TEgrSjVKKzZ2Y1hsN3JhdDlQdlpqdGo2SHFsMUwrNGN0Ky9VM0FYbnE2QWRrKzFjN1AwMjU1Q3pUVzZiK1BBMGVTMTA4MmdFcG1qTjZSTFZkMkhjVC9ydnZ2dnY2NDlPV2JleGh3bW4xd1NFTE8rR1pMYWttVENSK0VidGxRQVJmSnVDbWZlcUhRSDJ4bXg4a1l3Y08rbzZTeEpwV1A4R3BUYXNmUUEwbDJqL2FTb1RTcWZmM1J0N3ZiMCs1Nzc1d3FENjlXS2EyM2VhaG1rMUw1bmNXWTFoeHNPQ1podnJpV0s4RVI5MFpUM2htdnpWVUZyWStFcXd0OFl2L0I4OEwzTHAwS0FBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Rank"],"name":[1],"type":["int"],"align":["right"]},{"label":["Name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Yea"],"name":[3],"type":["int"],"align":["right"]},{"label":["Rating"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"54","2":"Hamilton","3":"2020","4":"8.4"},{"1":"185","2":"Soul","3":"2020","4":"8.1"},{"1":"30","2":"Gisaengchung","3":"2019","4":"8.5"},{"1":"60","2":"Joker","3":"2019","4":"8.4"},{"1":"76","2":"Avengers: Endgame","3":"2019","4":"8.3"},{"1":"105","2":"1917","3":"2019","4":"8.2"},{"1":"166","2":"Klaus","3":"2019","4":"8.1"},{"1":"202","2":"Ford v Ferrari","3":"2019","4":"8.1"},{"1":"241","2":"Portrait de la jeune fille en feu","3":"2019","4":"8.0"},{"1":"64","2":"Avengers: Infinity War","3":"2018","4":"8.4"},{"1":"69","2":"Spider-Man: Into the Spider-Verse","3":"2018","4":"8.3"},{"1":"82","2":"Capharnaüm","3":"2018","4":"8.3"},{"1":"126","2":"Green Book","3":"2018","4":"8.2"},{"1":"195","2":"Andhadhun","3":"2018","4":"8.1"},{"1":"75","2":"Coco","3":"2017","4":"8.3"},{"1":"151","2":"Three Billboards Outside Ebbing, Missouri","3":"2017","4":"8.1"},{"1":"218","2":"Logan","3":"2017","4":"8.0"},{"1":"243","2":"Vikram Vedha","3":"2017","4":"8.0"},{"1":"74","2":"Kimi no na wa.","3":"2016","4":"8.3"},{"1":"97","2":"Dangal","3":"2016","4":"8.3"},{"1":"192","2":"Hacksaw Ridge","3":"2016","4":"8.1"},{"1":"217","2":"Ah-ga-ssi","3":"2016","4":"8.0"},{"1":"244","2":"Contratiempo","3":"2016","4":"8.0"},{"1":"158","2":"Inside Out","3":"2015","4":"8.1"},{"1":"178","2":"Room","3":"2015","4":"8.1"},{"1":"207","2":"Mad Max: Fury Road","3":"2015","4":"8.1"},{"1":"225","2":"Spotlight","3":"2015","4":"8.0"},{"1":"248","2":"Drishyam","3":"2015","4":"8.0"},{"1":"29","2":"Interstellar","3":"2014","4":"8.5"},{"1":"45","2":"Whiplash","3":"2014","4":"8.5"},{"1":"181","2":"Relatos salvajes","3":"2014","4":"8.1"},{"1":"188","2":"The Grand Budapest Hotel","3":"2014","4":"8.1"},{"1":"189","2":"Gone Girl","3":"2014","4":"8.1"},{"1":"141","2":"The Wolf of Wall Street","3":"2013","4":"8.2"},{"1":"196","2":"Prisoners","3":"2013","4":"8.1"},{"1":"205","2":"12 Years a Slave","3":"2013","4":"8.1"},{"1":"221","2":"Rush","3":"2013","4":"8.0"},{"1":"250","2":"Mandariinid","3":"2013","4":"8.0"},{"1":"58","2":"Django Unchained","3":"2012","4":"8.4"},{"1":"71","2":"The Dark Knight Rises","3":"2012","4":"8.3"},{"1":"94","2":"Jagten","3":"2012","4":"8.3"},{"1":"233","2":"Gangs of Wasseypur","3":"2012","4":"8.0"},{"1":"44","2":"The Intouchables","3":"2011","4":"8.5"},{"1":"113","2":"Jodaeiye Nader az Simin","3":"2011","4":"8.2"},{"1":"162","2":"Warrior","3":"2011","4":"8.1"},{"1":"212","2":"Harry Potter and the Deathly Hallows: Part 2","3":"2011","4":"8.1"},{"1":"245","2":"The Help","3":"2011","4":"8.0"},{"1":"13","2":"Inception","3":"2010","4":"8.7"},{"1":"111","2":"Toy Story 3","3":"2010","4":"8.2"},{"1":"115","2":"Incendies","3":"2010","4":"8.2"},{"1":"152","2":"Shutter Island","3":"2010","4":"8.1"},{"1":"201","2":"How to Train Your Dragon","3":"2010","4":"8.1"},{"1":"80","2":"3 Idiots","3":"2009","4":"8.3"},{"1":"85","2":"Inglourious Basterds","3":"2009","4":"8.3"},{"1":"121","2":"Up","3":"2009","4":"8.2"},{"1":"143","2":"El secreto de sus ojos","3":"2009","4":"8.1"},{"1":"187","2":"Mary and Max","3":"2009","4":"8.1"},{"1":"215","2":"Hachi: A Dog's Tale","3":"2009","4":"8.1"},{"1":"4","2":"The Dark Knight","3":"2008","4":"9.0"},{"1":"62","2":"WALL·E","3":"2008","4":"8.4"},{"1":"179","2":"Gran Torino","3":"2008","4":"8.1"},{"1":"88","2":"Taare Zameen Par","3":"2007","4":"8.3"},{"1":"144","2":"There Will Be Blood","3":"2007","4":"8.1"},{"1":"156","2":"No Country for Old Men","3":"2007","4":"8.1"},{"1":"219","2":"Into the Wild","3":"2007","4":"8.0"},{"1":"43","2":"The Departed","3":"2006","4":"8.5"},{"1":"47","2":"The Prestige","3":"2006","4":"8.5"},{"1":"59","2":"The Lives of Others","3":"2006","4":"8.4"},{"1":"142","2":"Pan's Labyrinth","3":"2006","4":"8.2"},{"1":"237","2":"Rang De Basanti","3":"2006","4":"8.0"},{"1":"129","2":"Batman Begins","3":"2005","4":"8.2"},{"1":"155","2":"Babam ve Oglum","3":"2005","4":"8.1"},{"1":"157","2":"V for Vendetta","3":"2005","4":"8.1"},{"1":"95","2":"Eternal Sunshine of the Spotless Mind","3":"2004","4":"8.3"},{"1":"131","2":"Der Untergang","3":"2004","4":"8.2"},{"1":"136","2":"Hauru no ugoku shiro","3":"2004","4":"8.2"},{"1":"208","2":"Million Dollar Baby","3":"2004","4":"8.1"},{"1":"228","2":"Hotel Rwanda","3":"2004","4":"8.0"},{"1":"238","2":"Before Sunset","3":"2004","4":"8.0"},{"1":"7","2":"The Lord of the Rings: The Return of the King","3":"2003","4":"8.9"},{"1":"67","2":"Oldeuboi","3":"2003","4":"8.3"},{"1":"169","2":"Finding Nemo","3":"2003","4":"8.1"},{"1":"173","2":"Kill Bill: Vol. 1","3":"2003","4":"8.1"},{"1":"175","2":"Salinui chueok","3":"2003","4":"8.1"},{"1":"14","2":"The Lord of the Rings: The Two Towers","3":"2002","4":"8.7"},{"1":"22","2":"Cidade de Deus","3":"2002","4":"8.6"},{"1":"35","2":"The Pianist","3":"2002","4":"8.5"},{"1":"193","2":"Catch Me If You Can","3":"2002","4":"8.1"},{"1":"10","2":"The Lord of the Rings: The Fellowship of the Ring","3":"2001","4":"8.8"},{"1":"27","2":"Sen to Chihiro no kamikakushi","3":"2001","4":"8.5"},{"1":"112","2":"Amélie","3":"2001","4":"8.2"},{"1":"139","2":"A Beautiful Mind","3":"2001","4":"8.2"},{"1":"232","2":"Monsters, Inc.","3":"2001","4":"8.0"},{"1":"41","2":"Gladiator","3":"2000","4":"8.5"},{"1":"55","2":"Memento","3":"2000","4":"8.4"},{"1":"91","2":"Requiem for a Dream","3":"2000","4":"8.3"},{"1":"103","2":"Snatch","3":"2000","4":"8.2"},{"1":"229","2":"Amores perros","3":"2000","4":"8.0"},{"1":"239","2":"Fa yeung nin wah","3":"2000","4":"8.0"},{"1":"11","2":"Fight Club","3":"1999","4":"8.8"},{"1":"16","2":"The Matrix","3":"1999","4":"8.6"},{"1":"28","2":"The Green Mile","3":"1999","4":"8.5"},{"1":"77","2":"American Beauty","3":"1999","4":"8.3"},{"1":"163","2":"The Sixth Sense","3":"1999","4":"8.1"},{"1":"26","2":"Saving Private Ryan","3":"1998","4":"8.6"},{"1":"38","2":"American History X","3":"1998","4":"8.5"},{"1":"145","2":"Lock, Stock and Two Smoking Barrels","3":"1998","4":"8.1"},{"1":"167","2":"The Truman Show","3":"1998","4":"8.1"},{"1":"197","2":"The Big Lebowski","3":"1998","4":"8.1"},{"1":"21","2":"La vita è bella","3":"1997","4":"8.6"},{"1":"68","2":"Mononoke-hime","3":"1997","4":"8.3"},{"1":"87","2":"Good Will Hunting","3":"1997","4":"8.3"},{"1":"124","2":"L.A. Confidential","3":"1997","4":"8.2"},{"1":"132","2":"Bacheha-Ye aseman","3":"1997","4":"8.2"},{"1":"164","2":"Trainspotting","3":"1996","4":"8.1"},{"1":"177","2":"Fargo","3":"1996","4":"8.1"},{"1":"203","2":"Eskiya","3":"1996","4":"8.1"},{"1":"20","2":"Se7en","3":"1995","4":"8.6"},{"1":"32","2":"The Usual Suspects","3":"1995","4":"8.5"},{"1":"78","2":"Braveheart","3":"1995","4":"8.3"},{"1":"81","2":"Toy Story","3":"1995","4":"8.3"},{"1":"123","2":"Heat","3":"1995","4":"8.2"},{"1":"138","2":"Casino","3":"1995","4":"8.2"},{"1":"191","2":"Before Sunrise","3":"1995","4":"8.1"},{"1":"226","2":"La haine","3":"1995","4":"8.0"},{"1":"1","2":"The Shawshank Redemption","3":"1994","4":"9.2"},{"1":"8","2":"Pulp Fiction","3":"1994","4":"8.8"},{"1":"12","2":"Forrest Gump","3":"1994","4":"8.8"},{"1":"31","2":"Léon","3":"1994","4":"8.5"},{"1":"34","2":"The Lion King","3":"1994","4":"8.5"},{"1":"6","2":"Schindler's List","3":"1993","4":"8.9"},{"1":"165","2":"Jurassic Park","3":"1993","4":"8.1"},{"1":"186","2":"In the Name of the Father","3":"1993","4":"8.1"},{"1":"89","2":"Reservoir Dogs","3":"1992","4":"8.3"},{"1":"133","2":"Unforgiven","3":"1992","4":"8.2"},{"1":"23","2":"The Silence of the Lambs","3":"1991","4":"8.6"},{"1":"37","2":"Terminator 2: Judgment Day","3":"1991","4":"8.5"},{"1":"17","2":"Goodfellas","3":"1990","4":"8.6"},{"1":"122","2":"Indiana Jones and the Last Crusade","3":"1989","4":"8.2"},{"1":"210","2":"Dead Poets Society","3":"1989","4":"8.1"},{"1":"46","2":"Hotaru no haka","3":"1988","4":"8.5"},{"1":"50","2":"Nuovo Cinema Paradiso","3":"1988","4":"8.4"},{"1":"125","2":"Die Hard","3":"1988","4":"8.2"},{"1":"146","2":"Tonari no Totoro","3":"1988","4":"8.1"},{"1":"220","2":"Dom za vesanje","3":"1988","4":"8.0"},{"1":"98","2":"Full Metal Jacket","3":"1987","4":"8.2"},{"1":"246","2":"The Princess Bride","3":"1987","4":"8.0"},{"1":"73","2":"Aliens","3":"1986","4":"8.3"},{"1":"211","2":"Stand by Me","3":"1986","4":"8.1"},{"1":"216","2":"Platoon","3":"1986","4":"8.1"},{"1":"36","2":"Back to the Future","3":"1985","4":"8.5"},{"1":"109","2":"Idi i smotri","3":"1985","4":"8.2"},{"1":"135","2":"Ran","3":"1985","4":"8.2"},{"1":"72","2":"Once Upon a Time in America","3":"1984","4":"8.3"},{"1":"84","2":"Amadeus","3":"1984","4":"8.3"},{"1":"234","2":"Kaze no tani no Naushika","3":"1984","4":"8.0"},{"1":"240","2":"Paris, Texas","3":"1984","4":"8.0"},{"1":"86","2":"Star Wars: Episode VI - Return of the Jedi","3":"1983","4":"8.3"},{"1":"106","2":"Scarface","3":"1983","4":"8.2"},{"1":"161","2":"The Thing","3":"1982","4":"8.1"},{"1":"171","2":"Blade Runner","3":"1982","4":"8.1"},{"1":"249","2":"Fanny och Alexander","3":"1982","4":"8.0"},{"1":"57","2":"Raiders of the Lost Ark","3":"1981","4":"8.4"},{"1":"79","2":"Das Boot","3":"1981","4":"8.3"},{"1":"15","2":"Star Wars: Episode V - The Empire Strikes Back","3":"1980","4":"8.7"},{"1":"63","2":"The Shining","3":"1980","4":"8.4"},{"1":"147","2":"Raging Bull","3":"1980","4":"8.1"},{"1":"160","2":"The Elephant Man","3":"1980","4":"8.1"},{"1":"52","2":"Alien","3":"1979","4":"8.4"},{"1":"53","2":"Apocalypse Now","3":"1979","4":"8.4"},{"1":"172","2":"Stalker","3":"1979","4":"8.1"},{"1":"223","2":"Life of Brian","3":"1979","4":"8.0"},{"1":"184","2":"The Deer Hunter","3":"1978","4":"8.1"},{"1":"190","2":"Höstsonaten","3":"1978","4":"8.1"},{"1":"25","2":"Star Wars","3":"1977","4":"8.6"},{"1":"108","2":"Taxi Driver","3":"1976","4":"8.2"},{"1":"209","2":"Network","3":"1976","4":"8.1"},{"1":"231","2":"Rocky","3":"1976","4":"8.0"},{"1":"18","2":"One Flew Over the Cuckoo's Nest","3":"1975","4":"8.6"},{"1":"127","2":"Monty Python and the Holy Grail","3":"1975","4":"8.2"},{"1":"204","2":"Barry Lyndon","3":"1975","4":"8.1"},{"1":"3","2":"The Godfather: Part II","3":"1974","4":"9.0"},{"1":"154","2":"Chinatown","3":"1974","4":"8.1"},{"1":"114","2":"The Sting","3":"1973","4":"8.2"},{"1":"2","2":"The Godfather","3":"1972","4":"9.1"},{"1":"104","2":"A Clockwork Orange","3":"1971","4":"8.2"},{"1":"174","2":"Anand","3":"1971","4":"8.1"},{"1":"48","2":"Once Upon a Time in the West","3":"1968","4":"8.4"},{"1":"90","2":"2001: A Space Odyssey","3":"1968","4":"8.3"},{"1":"214","2":"Cool Hand Luke","3":"1967","4":"8.1"},{"1":"9","2":"Il buono, il brutto, il cattivo","3":"1966","4":"8.8"},{"1":"194","2":"Persona","3":"1966","4":"8.1"},{"1":"230","2":"Andrei Rublev","3":"1966","4":"8.0"},{"1":"247","2":"La battaglia di Algeri","3":"1966","4":"8.0"},{"1":"117","2":"Per qualche dollaro in più","3":"1965","4":"8.2"},{"1":"70","2":"Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb","3":"1964","4":"8.3"},{"1":"83","2":"Tengoku to jigoku","3":"1963","4":"8.3"},{"1":"140","2":"The Great Escape","3":"1963","4":"8.2"},{"1":"33","2":"Seppuku","3":"1962","4":"8.5"},{"1":"110","2":"Lawrence of Arabia","3":"1962","4":"8.2"},{"1":"120","2":"To Kill a Mockingbird","3":"1962","4":"8.2"},{"1":"128","2":"Yôjinbô","3":"1961","4":"8.2"},{"1":"148","2":"Judgment at Nuremberg","3":"1961","4":"8.1"},{"1":"40","2":"Psycho","3":"1960","4":"8.5"},{"1":"118","2":"The Apartment","3":"1960","4":"8.2"},{"1":"102","2":"North by Northwest","3":"1959","4":"8.2"},{"1":"134","2":"Some Like It Hot","3":"1959","4":"8.2"},{"1":"213","2":"Ben-Hur","3":"1959","4":"8.1"},{"1":"224","2":"Les quatre cents coups","3":"1959","4":"8.0"},{"1":"92","2":"Vertigo","3":"1958","4":"8.3"},{"1":"5","2":"12 Angry Men","3":"1957","4":"8.9"},{"1":"61","2":"Paths of Glory","3":"1957","4":"8.4"},{"1":"66","2":"Witness for the Prosecution","3":"1957","4":"8.4"},{"1":"159","2":"Det sjunde inseglet","3":"1957","4":"8.1"},{"1":"170","2":"Smultronstället","3":"1957","4":"8.1"},{"1":"176","2":"The Bridge on the River Kwai","3":"1957","4":"8.1"},{"1":"236","2":"Du rififi chez les hommes","3":"1955","4":"8.0"},{"1":"19","2":"Shichinin no samurai","3":"1954","4":"8.6"},{"1":"51","2":"Rear Window","3":"1954","4":"8.4"},{"1":"150","2":"Dial M for Murder","3":"1954","4":"8.1"},{"1":"182","2":"On the Waterfront","3":"1954","4":"8.1"},{"1":"183","2":"Tôkyô monogatari","3":"1953","4":"8.1"},{"1":"222","2":"Le salaire de la peur","3":"1953","4":"8.0"},{"1":"100","2":"Singin' in the Rain","3":"1952","4":"8.2"},{"1":"107","2":"Ikiru","3":"1952","4":"8.2"},{"1":"65","2":"Sunset Blvd.","3":"1950","4":"8.4"},{"1":"130","2":"Rashômon","3":"1950","4":"8.2"},{"1":"137","2":"All About Eve","3":"1950","4":"8.2"},{"1":"180","2":"The Third Man","3":"1949","4":"8.1"},{"1":"99","2":"Ladri di biciclette","3":"1948","4":"8.2"},{"1":"149","2":"The Treasure of the Sierra Madre","3":"1948","4":"8.1"},{"1":"24","2":"It's a Wonderful Life","3":"1946","4":"8.6"},{"1":"119","2":"Double Indemnity","3":"1944","4":"8.2"},{"1":"49","2":"Casablanca","3":"1942","4":"8.4"},{"1":"199","2":"To Be or Not to Be","3":"1942","4":"8.1"},{"1":"96","2":"Citizen Kane","3":"1941","4":"8.3"},{"1":"56","2":"The Great Dictator","3":"1940","4":"8.4"},{"1":"235","2":"Rebecca","3":"1940","4":"8.0"},{"1":"168","2":"Gone with the Wind","3":"1939","4":"8.1"},{"1":"206","2":"Mr. Smith Goes to Washington","3":"1939","4":"8.1"},{"1":"39","2":"Modern Times","3":"1936","4":"8.5"},{"1":"242","2":"It Happened One Night","3":"1934","4":"8.0"},{"1":"42","2":"City Lights","3":"1931","4":"8.5"},{"1":"93","2":"M - Eine Stadt sucht einen Mörder","3":"1931","4":"8.3"},{"1":"227","2":"La passion de Jeanne d'Arc","3":"1928","4":"8.0"},{"1":"116","2":"Metropolis","3":"1927","4":"8.2"},{"1":"200","2":"The General","3":"1926","4":"8.1"},{"1":"153","2":"The Gold Rush","3":"1925","4":"8.1"},{"1":"198","2":"Sherlock Jr.","3":"1924","4":"8.1"},{"1":"101","2":"The Kid","3":"1921","4":"8.2"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[250]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbk5BXG5OQVxuYGBgIn0= -->
+<pre class="r"><code>NA
+NA
+NA</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Extracting Links</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlua3MgPC0gdG9wX21vdmllcyAlPiVcbiAgaHRtbF9ub2RlcyhcInRib2R5IHRyIHRkLnRpdGxlQ29sdW1uIGFcIikgJT4lXG4gIGh0bWxfYXR0cihcImhyZWZcIikgJT4lXG4gIHBhc3RlMChcImh0dHBzOi8vd3d3LmltZGIuY29tXCIsIC4pXG5gYGAifQ== -->
+<pre class="r"><code>links &lt;- top_movies %&gt;%
+  html_nodes(&quot;tbody tr td.titleColumn a&quot;) %&gt;%
+  html_attr(&quot;href&quot;) %&gt;%
+  paste0(&quot;https://www.imdb.com&quot;, .)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Extract the Director name</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlua3NbMl0gJT4lXG4gIHJlYWRfaHRtbCgpICU+JVxuICBodG1sX25vZGUoXCJkaXYuY3JlZGl0X3N1bW1hcnlfaXRlbSBhXCIpICU+JVxuICBodG1sX3RleHQoKVxuYGBgIn0= -->
+<pre class="r"><code>links[2] %&gt;%
+  read_html() %&gt;%
+  html_node(&quot;div.credit_summary_item a&quot;) %&gt;%
+  html_text()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiRnJhbmNpcyBGb3JkIENvcHBvbGFcIlxuIn0= -->
+<pre><code>[1] &quot;Francis Ford Coppola&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZG5hbWVzIDwtIGxhcHBseShsaW5rc1sxOjEwXSwgZnVuY3Rpb24obGluayl7XG4gIGxpbmsgJT4lXG4gIHJlYWRfaHRtbCgpICU+JVxuICBodG1sX25vZGUoXCJkaXYuY3JlZGl0X3N1bW1hcnlfaXRlbSBhXCIpICU+JVxuICBodG1sX3RleHQoKVxuICBcbiAgXG59KVxuXG5kbmFtZXMgJT4lXG4gIHVubGlzdCgpXG5gYGAifQ== -->
+<pre class="r"><code>dnames &lt;- lapply(links[1:10], function(link){
+  link %&gt;%
+  read_html() %&gt;%
+  html_node(&quot;div.credit_summary_item a&quot;) %&gt;%
+  html_text()
+  
+  
+})
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KYGBge3J9DQpsaWJyYXJ5KCJsdWJyaWRhdGUiKQ0KDQp0b2RheSgpDQpub3coKQ0KDQoNCg0KDQpgYGANCmBgYHtyfQ0KeW1kKCIyMDIwLTEyLTAxIikNCmBgYA0KDQo=</div>
+dnames %&gt;%
+  unlist()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIkZyYW5rIERhcmFib250XCIgICAgICAgXCJGcmFuY2lzIEZvcmQgQ29wcG9sYVwiIFwiRnJhbmNpcyBGb3JkIENvcHBvbGFcIiBcIkNocmlzdG9waGVyIE5vbGFuXCIgICBcbiBbNV0gXCJTaWRuZXkgTHVtZXRcIiAgICAgICAgIFwiU3RldmVuIFNwaWVsYmVyZ1wiICAgICBcIlBldGVyIEphY2tzb25cIiAgICAgICAgXCJRdWVudGluIFRhcmFudGlub1wiICAgXG4gWzldIFwiU2VyZ2lvIExlb25lXCIgICAgICAgICBcIlBldGVyIEphY2tzb25cIiAgICAgICBcbiJ9 -->
+<pre><code> [1] &quot;Frank Darabont&quot;       &quot;Francis Ford Coppola&quot; &quot;Francis Ford Coppola&quot; &quot;Christopher Nolan&quot;   
+ [5] &quot;Sidney Lumet&quot;         &quot;Steven Spielberg&quot;     &quot;Peter Jackson&quot;        &quot;Quentin Tarantino&quot;   
+ [9] &quot;Sergio Leone&quot;         &quot;Peter Jackson&quot;       </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIldlYiBTY3JhcHBpbmciDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KUGFja2FnZSBuYW1lOg0Ke3J2ZXN0fQ0KDQoNCldlYnNpdGUgd2Ugd2lsbCBzY3JhcCBkYXRhOg0KaHR0cHM6Ly93d3cuaW1kYi5jb20vY2hhcnQvdG9wLw0KDQpgYGB7cn0NCmxpYnJhcnkocnZlc3QpDQoNCnVybCA8LSAiaHR0cHM6Ly93d3cuaW1kYi5jb20vY2hhcnQvdG9wLyINCg0KDQp0b3BfbW92aWVzIDwtIHJlYWRfaHRtbCh1cmwpIA0KDQoNCmBgYA0KY2xhc3MgKCIubmFtZSIpDQppZCAoIiNuYW1lIikNCg0KTW92aWUgVGl0bGVzDQpgYGB7cn0NCmxpYnJhcnkoZHBseXIpDQpsaWJyYXJ5KHN0cmluZ3IpDQoNCnRpdGxlcyA8LXRvcF9tb3ZpZXMgJT4lDQogIGh0bWxfbm9kZXMoInRib2R5IHRyIHRkLnRpdGxlQ29sdW1uIikgJT4lDQogIGh0bWxfdGV4dCgpICU+JQ0KICBzdHJfdHJpbSgpICU+JQ0KICBzdHJzcGxpdCgiXG4iKSAlPiUNCiAgbGFwcGx5KGZ1bmN0aW9uKG1vdmllcyl7bW92aWVzWzJdfSkgJT4lDQogIHVubGlzdCgpICU+JQ0KICBzdHJfdHJpbSgpDQoNCmBgYA0KDQpNb3ZpZSBZZWFycw0KYGBge3J9DQoNCnllYXJzIDwtdG9wX21vdmllcyAlPiUNCiAgaHRtbF9ub2RlcygidGJvZHkgdHIgdGQudGl0bGVDb2x1bW4iKSAlPiUNCiAgaHRtbF90ZXh0KCkgJT4lDQogIHN0cl90cmltKCkgJT4lDQogIHN0cnNwbGl0KCJcbiIpICU+JQ0KICBsYXBwbHkoZnVuY3Rpb24obW92aWVzKXttb3ZpZXNbM119KSAlPiUNCiAgdW5saXN0KCkgJT4lDQogIHN0cl90cmltKCkgJT4lDQogIHN0cl9yZXBsYWNlKCJcXCgiLCIiKSAlPiUNCiAgc3RyX3JlcGxhY2UoIlxcKSIsIiIpICU+JQ0KICBhcy5pbnRlZ2VyKCkNCg0KDQpgYGANCg0KUmFua3MNCmBgYHtyfQ0KcmFua3MgPC0gMToyNTANCg0KYGBgDQoNClJhdGluZ3MNCmBgYHtyfQ0KcmF0aW5ncyA8LSB0b3BfbW92aWVzICU+JQ0KICBodG1sX25vZGVzKCIuaW1kYlJhdGluZyBzdHJvbmciKSAlPiUNCiAgaHRtbF90ZXh0KCkgJT4lDQogIGFzLm51bWVyaWMoKQ0KDQpgYGANCg0KYGBge3J9DQp0b3BfbW92aWVzX3RpYmJsZSA8LXRpYmJsZSgNCiAgUmFuayA9IHJhbmtzLA0KICBOYW1lID0gdGl0bGVzLA0KICBZZWEgPSB5ZWFycywNCiAgUmF0aW5nID0gcmF0aW5ncw0KICANCiAgDQopDQoNCmBgYA0KYGBge3J9DQp0b3BfbW92aWVzX3RpYmJsZSAlPiUNCiAgYXJyYW5nZShkZXNjKHllYXJzKSkNCg0KDQoNCmBgYA0KDQoNCkV4dHJhY3RpbmcgTGlua3MNCmBgYHtyfQ0KbGlua3MgPC0gdG9wX21vdmllcyAlPiUNCiAgaHRtbF9ub2RlcygidGJvZHkgdHIgdGQudGl0bGVDb2x1bW4gYSIpICU+JQ0KICBodG1sX2F0dHIoImhyZWYiKSAlPiUNCiAgcGFzdGUwKCJodHRwczovL3d3dy5pbWRiLmNvbSIsIC4pDQpgYGANCg0KRXh0cmFjdCB0aGUgRGlyZWN0b3IgbmFtZQ0KYGBge3J9DQpsaW5rc1syXSAlPiUNCiAgcmVhZF9odG1sKCkgJT4lDQogIGh0bWxfbm9kZSgiZGl2LmNyZWRpdF9zdW1tYXJ5X2l0ZW0gYSIpICU+JQ0KICBodG1sX3RleHQoKQ0KYGBgDQpgYGB7cn0NCmRuYW1lcyA8LSBsYXBwbHkobGlua3NbMToxMF0sIGZ1bmN0aW9uKGxpbmspew0KICBsaW5rICU+JQ0KICByZWFkX2h0bWwoKSAlPiUNCiAgaHRtbF9ub2RlKCJkaXYuY3JlZGl0X3N1bW1hcnlfaXRlbSBhIikgJT4lDQogIGh0bWxfdGV4dCgpDQogIA0KICANCn0pDQoNCmRuYW1lcyAlPiUNCiAgdW5saXN0KCkNCg0KYGBgDQoNCg==</div>
 
 
 
@@ -1875,7 +2013,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("Dates & Times in R.Rmd");
+  window.initializeSourceEmbed("web scrapping.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

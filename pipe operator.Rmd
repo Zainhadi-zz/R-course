@@ -1,0 +1,43 @@
+---
+title: "Pipe Operator"
+output: html_notebook
+---
+
+```{r}
+library(magrittr)
+
+1:10 %>% 
+  mean() %>% 
+  floor() %>%
+  sample()
+```
+
+```{r}
+library(magrittr)
+library(dplyr)
+temp <- starwars %>%
+  select(2:7)
+```
+```{r}
+library(dplyr)
+iris %>% 
+  select(Species,starts_with("Petal")) %>%
+  mutate(Petal.Area = Petal.Length*Petal.Width) %>%
+  filter(Petal.Area > 4 & Petal.Area <6) %>%
+  select(-Petal.Area)
+```
+```{r}
+library(dplyr)
+mtcars %>%
+  group_by(carb) %>%
+  summarize(n=n())
+```
+```{r}
+library(dplyr)
+mtcars %>% 
+  group_by(cyl) %>%
+  summarize(n=n())
+
+
+```
+

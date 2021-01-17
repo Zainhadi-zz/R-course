@@ -1812,23 +1812,82 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShcImx1YnJpZGF0ZVwiKVxuXG50b2RheSgpXG5ub3coKVxuXG5cblxuXG5gYGAifQ== -->
-<pre class="r"><code>library(&quot;lubridate&quot;)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KGRwbHlyKVxubGlicmFyeShydmVzdClcbmxpYnJhcnkoc3RyaW5ncilcbmxpYnJhcnkodGliYmxlKVxuXG5cbmBgYCJ9 -->
+<pre class="r"><code>
+library(dplyr)
+library(rvest)
+library(stringr)
+library(tibble)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudXJsIDwtIFwiaHR0cHM6Ly90aW1lc29maW5kaWEuaW5kaWF0aW1lcy5jb20vZW50ZXJ0YWlubWVudC9oaW5kaS9ib2xseXdvb2QvdG9wLTIwLWJlc3QtYm9sbHl3b29kLW1vdmllcy1vZi0yMDIwXCJcblxudG9wX21vdmllcyA8LSByZWFkX2h0bWwodXJsKVxuYGBgIn0= -->
+<pre class="r"><code>url &lt;- &quot;https://timesofindia.indiatimes.com/entertainment/hindi/bollywood/top-20-best-bollywood-movies-of-2020&quot;
 
-today()
-now()
+top_movies &lt;- read_html(url)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGl0bGVzIDwtIHRvcF9tb3ZpZXMgJT4lXG4gIGh0bWxfbm9kZXMoXCIubWFpbi1jb250ZW50IGgyXCIpICU+JVxuICBodG1sX3RleHQoKSAlPiVcbiAgc3RyX3RyaW0oKSAlPiVcbiAgc3RyX3NwbGl0KFwiXFxuXCIpICU+JVxuICAgbGFwcGx5KGZ1bmN0aW9uKG1vdmllcyl7bW92aWVzWzFdfSkgJT4lXG4gIHVubGlzdCgpICU+JVxuICBzdHJfdHJpbSgpXG4gIFxuXG5cblxuYGBgIn0= -->
+<pre class="r"><code>titles &lt;- top_movies %&gt;%
+  html_nodes(&quot;.main-content h2&quot;) %&gt;%
+  html_text() %&gt;%
+  str_trim() %&gt;%
+  str_split(&quot;\n&quot;) %&gt;%
+   lapply(function(movies){movies[1]}) %&gt;%
+  unlist() %&gt;%
+  str_trim()
+  
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmF0aW5ncyA8LSB0b3BfbW92aWVzICU+JVxuICBodG1sX25vZGVzKFwiLnRvcHRlbl9yYXRlbW92aWVcIikgJT4lXG4gIGh0bWxfdGV4dCgpIFxuXG5gYGAifQ== -->
+<pre class="r"><code>ratings &lt;- top_movies %&gt;%
+  html_nodes(&quot;.topten_ratemovie&quot;) %&gt;%
+  html_text() 
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueW1kKFwiMjAyMC0xMi0wMVwiKVxuYGBgIn0= -->
-<pre class="r"><code>ymd(&quot;2020-12-01&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTm8uIDwtIDE6MjBcbmBgYCJ9 -->
+<pre class="r"><code>No. &lt;- 1:20</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudG9wX21vdmllc19oaW5kaV8yMDIwIDwtIHRpYmJsZShcbiAgIE5vLiA9IE5vLixcbiAgTmFtZSA9IHRpdGxlcyxcbiAgUmF0aW5nID0gcmF0aW5nc1xuICBcbiAgXG4pXG5cbnRvcF9tb3ZpZXNfaGluZGlfMjAyMFxuYGBgIn0= -->
+<pre class="r"><code>top_movies_hindi_2020 &lt;- tibble(
+   No. = No.,
+  Name = titles,
+  Rating = ratings
+  
+  
+)
+
+top_movies_hindi_2020</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MjAsIm5jb2wiOjN9LCJyZGYiOiJINHNJQUFBQUFBQUFCczFVVFhQYU1CQVZINFpBbW9TVzl0Uk9Sek05eDZXaFhISkw4QXlacEdTWW1FNHl2UzFZdFFSR1ltUTVDVDMxQi9jM2hLNk5sQSt1dmZUd2JMM1Y3dHRkeWV1cjRLYmJ2R2tTUWlxa2lxaDR1Q1MxL3VqTFVlK0lrR29aV1FsM0d2bjdIcjNhaFNzaGU0aTN4U1loWld1ckl2TDRHcUtPMkVIa2dibjhMdUtWamR0SEhDQmFpTmVJTjRpMjFXc1Y3MDNDK3BqRGNnbVJwWlZRYUx2OE9NamtEQ1FONFo1Sk9LWmp6dWdGNkZna2RDQjBZcjArbklHbUZ5Sk5jWlBSczN4eGpHNndXQUZNckk4M0FobURKZS9ISURuTXhFYnd1MHd6R2ROcjBGb29sN2tlZ0o0QVNFdmZoWm1HR1IweE9zeDFFbnJLUVF1NytTbFFTYkxDQ294WjBaTk0wMnZGYVovREF1YUcwVkFZME15NkhvUWM1cGswa0FBTjJLMVQyQTJ3bzFNMlJWRlg0OTRnUzJDaWl2Q0pzc2I5RXhscjlrdlFJWXRFdG5EdGhEeWJjRmZaanhWRWdDY0d0eEYvckw4MnhJd3l0cXgxRG5mWW02RG4rR1NMUjY5V2FEUmpoZ1lncDB6VGJtRHRPMzJPTndRd3Q3eVI4d1NlQkt2ZnNraHQzYXIzMWU5OTdqMlJ6citSN25PMS80NTB0c25Ma2ZJa0xGaHFENmppdnZOTDVidnp1OFI5ZDFWWFlBU2U3RXVGaGxaM3ZsUEpoNnY4R3gvcjlmclBkcXBwQXFsTDVZek5DQXo0UDNXZWhaQ0hyWkM2V2hxaEpBYVYyM2EwbndlWDlKYWhsY204a3Vod3lqTTVQK3gxN096bi93aGl5eXZaT1hmcnlpWm5lVzIxUE5jdGs3R1FybmNQUDNubXhub2ZXeTQ2OXBkYVNPTmFRV3ZxRzRVajVDeFRsVGhMMFJ4NStBc1ZOdGZaN3dRQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["No."],"name":[1],"type":["int"],"align":["right"]},{"label":["Name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Rating"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Thappad","3":"4.5/5"},{"1":"2","2":"Sir","3":"4.0/5"},{"1":"3","2":"Gunjan Saxena: The Kargil Girl","3":"4.0/5"},{"1":"4","2":"Har Kisse Ke Hisse: Kaamyaab","3":"4.0/5"},{"1":"5","2":"Panga","3":"4.0/5"},{"1":"6","2":"Tanhaji: The Unsung Warrior","3":"4.0/5"},{"1":"7","2":"Darbaan","3":"3.5/5"},{"1":"8","2":"Suraj Pe Mangal Bhari","3":"3.5/5"},{"1":"9","2":"Dolly Kitty Aur Woh Chamakte Sitare","3":"3.5/5"},{"1":"10","2":"Shakuntala Devi","3":"3.5/5"},{"1":"11","2":"Dil Bechara","3":"3.5/5"},{"1":"12","2":"Gulabo Sitabo","3":"3.5/5"},{"1":"13","2":"Angrezi Medium","3":"3.5/5"},{"1":"14","2":"Shubh Mangal Zyada Saavdhan","3":"3.5/5"},{"1":"15","2":"Malang","3":"3.5/5"},{"1":"16","2":"Jawaani Jaaneman","3":"3.5/5"},{"1":"17","2":"Street Dancer 3D","3":"3.5/5"},{"1":"18","2":"Chhapaak","3":"3.5/5"},{"1":"19","2":"Chhalaang","3":"3.0/5"},{"1":"20","2":"Ludo","3":"3.0/5"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[20]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
+<pre class="r"><code>NA</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KYGBge3J9DQpsaWJyYXJ5KCJsdWJyaWRhdGUiKQ0KDQp0b2RheSgpDQpub3coKQ0KDQoNCg0KDQpgYGANCmBgYHtyfQ0KeW1kKCIyMDIwLTEyLTAxIikNCmBgYA0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCg0KbGlicmFyeShkcGx5cikNCmxpYnJhcnkocnZlc3QpDQpsaWJyYXJ5KHN0cmluZ3IpDQpsaWJyYXJ5KHRpYmJsZSkNCg0KDQpgYGANCg0KYGBge3J9DQp1cmwgPC0gImh0dHBzOi8vdGltZXNvZmluZGlhLmluZGlhdGltZXMuY29tL2VudGVydGFpbm1lbnQvaGluZGkvYm9sbHl3b29kL3RvcC0yMC1iZXN0LWJvbGx5d29vZC1tb3ZpZXMtb2YtMjAyMCINCg0KdG9wX21vdmllcyA8LSByZWFkX2h0bWwodXJsKQ0KYGBgDQoNCmBgYHtyfQ0KdGl0bGVzIDwtIHRvcF9tb3ZpZXMgJT4lDQogIGh0bWxfbm9kZXMoIi5tYWluLWNvbnRlbnQgaDIiKSAlPiUNCiAgaHRtbF90ZXh0KCkgJT4lDQogIHN0cl90cmltKCkgJT4lDQogIHN0cl9zcGxpdCgiXG4iKSAlPiUNCiAgIGxhcHBseShmdW5jdGlvbihtb3ZpZXMpe21vdmllc1sxXX0pICU+JQ0KICB1bmxpc3QoKSAlPiUNCiAgc3RyX3RyaW0oKQ0KICANCg0KDQoNCmBgYA0KDQpgYGB7cn0NCnJhdGluZ3MgPC0gdG9wX21vdmllcyAlPiUNCiAgaHRtbF9ub2RlcygiLnRvcHRlbl9yYXRlbW92aWUiKSAlPiUNCiAgaHRtbF90ZXh0KCkgDQoNCmBgYA0KYGBge3J9DQpOby4gPC0gMToyMA0KYGBgDQpgYGB7cn0NCnRvcF9tb3ZpZXNfaGluZGlfMjAyMCA8LSB0aWJibGUoDQogICBOby4gPSBOby4sDQogIE5hbWUgPSB0aXRsZXMsDQogIFJhdGluZyA9IHJhdGluZ3MNCiAgDQogIA0KKQ0KDQp0b3BfbW92aWVzX2hpbmRpXzIwMjANCg0KYGBgDQoNCg==</div>
 
 
 
@@ -1875,7 +1934,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("Dates & Times in R.Rmd");
+  window.initializeSourceEmbed("web scrapping 2.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

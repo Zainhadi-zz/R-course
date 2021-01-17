@@ -1812,23 +1812,249 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShcImx1YnJpZGF0ZVwiKVxuXG50b2RheSgpXG5ub3coKVxuXG5cblxuXG5gYGAifQ== -->
-<pre class="r"><code>library(&quot;lubridate&quot;)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVwKDEwLDEwKVxuYGBgIn0= -->
+<pre class="r"><code>rep(10,10)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAxMCAxMCAxMCAxMCAxMCAxMCAxMCAxMCAxMCAxMFxuIn0= -->
+<pre><code> [1] 10 10 10 10 10 10 10 10 10 10</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFwcGx5KHJlcCgxMCwxMCkscnVuaWYpXG5gYGAifQ== -->
+<pre class="r"><code>lapply(rep(10,10),runif)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiBbMV0gMC44NTE4NzAxIDAuOTEzOTEwMCAwLjQzODY0MDEgMC40MzM4NjIxIDAuNzk0MjE2OCAwLjkwMDY5NzYgMC42ODYzOTYwXG4gWzhdIDAuMjEyODk5MyAwLjY5MDMxMzAgMC45NjE0ODg1XG5cbltbMl1dXG4gWzFdIDAuMjI5ODE4NjIgMC42OTQ3MjU0NiAwLjc5MTQ5Mjc3IDAuMjU3ODMwODcgMC4wNjgyMjAxMyAwLjI5NTAwNDM2XG4gWzddIDAuMDQ2MjI4NTAgMC40MzM4OTYwMyAwLjI5OTI1NTY4IDAuNDM5MDY2MjNcblxuW1szXV1cbiBbMV0gMC42NTY2NzkzIDAuNTE3NjMwMCAwLjk1MzUzOTMgMC4xMjk3OTA0IDAuOTkxMzcxNiAwLjI5MTEzMDggMC44OTUxODAwXG4gWzhdIDAuNTE1MDU4MyAwLjk4NjE3MjkgMC40MDg2ODU4XG5cbltbNF1dXG4gWzFdIDAuNTQ4OTgyMzkgMC4wMjQ1MjQ0OSAwLjUyNjYwMjA4IDAuOTg1Njg4NDQgMC42ODc1MDYzOSAwLjQ3MDg4NzgxXG4gWzddIDAuNzA1ODM5MTUgMC45MDQ4ODkxMCAwLjI5Nzc1Njg5IDAuOTczOTUyNTJcblxuW1s1XV1cbiBbMV0gMC4yNDg4MjkxMiAwLjgyOTg5OTM2IDAuOTMzMDk5ODEgMC42NzMxMzEzMiAwLjc2OTA5NTY4IDAuOTg1MTc0NzdcbiBbN10gMC44Mzc1NzE3NSAwLjA0MTkyMDY5IDAuNjA1MDc5MzUgMC40MDIwNzQ4N1xuXG5bWzZdXVxuIFsxXSAwLjEyODk5MTkgMC4zODE5MDI1IDAuNjg0MTkxNiAwLjkwODQxMTcgMC42OTk3NTM5IDAuODg2OTE1MyAwLjIwMzc4NTNcbiBbOF0gMC41OTkzNTA0IDAuMzExMTg4OCAwLjk0Njc4MTFcblxuW1s3XV1cbiBbMV0gMC4zMTI5Nzg5IDAuNjk0ODA0NCAwLjYwMDQ2NzQgMC40NDg5NTY0IDAuOTc1OTY4NyAwLjQ1Mjc3NDcgMC40Mzk4ODUzXG4gWzhdIDAuNjE0NjkzNCAwLjY3MTA1ODQgMC40OTg4MTQ2XG5cbltbOF1dXG4gWzFdIDAuNzQ1MDEwNCAwLjk2MjEzNDkgMC41MjY1MTMxIDAuNDMyNTgyNCAwLjk0MTAyNDMgMC41NDkzNzAxIDAuNDg3NjM4MFxuIFs4XSAwLjY4MzAxNDIgMC40ODA5MDIzIDAuNjc3NDE0M1xuXG5bWzldXVxuIFsxXSAwLjk5ODUwMjEzMyAwLjY3NzIyMzUxMCAwLjk0MjEyMDY2MSAwLjIxMTQ5NDc0MSAwLjI0MjY5OTM0OSAwLjk5NzAwNjA0M1xuIFs3XSAwLjM2Njg2NjkyMiAwLjg2MjAxMjI5MCAwLjc5NTcyMDQ2NiAwLjAwODk0OTM4N1xuXG5bWzEwXV1cbiBbMV0gMC41NjE0NDIwIDAuNDU0NjMyOCAwLjU3Mjg2NTYgMC4yMDk1NDMwIDAuODI3ODU0MyAwLjUyNDE0MTIgMC4xODEzMDEyXG4gWzhdIDAuNTQxMzE5NCAwLjI5MjM0NjggMC41MzM0ODY2XG4ifQ== -->
+<pre><code>[[1]]
+ [1] 0.8518701 0.9139100 0.4386401 0.4338621 0.7942168 0.9006976 0.6863960
+ [8] 0.2128993 0.6903130 0.9614885
 
-today()
-now()
+[[2]]
+ [1] 0.22981862 0.69472546 0.79149277 0.25783087 0.06822013 0.29500436
+ [7] 0.04622850 0.43389603 0.29925568 0.43906623
+
+[[3]]
+ [1] 0.6566793 0.5176300 0.9535393 0.1297904 0.9913716 0.2911308 0.8951800
+ [8] 0.5150583 0.9861729 0.4086858
+
+[[4]]
+ [1] 0.54898239 0.02452449 0.52660208 0.98568844 0.68750639 0.47088781
+ [7] 0.70583915 0.90488910 0.29775689 0.97395252
+
+[[5]]
+ [1] 0.24882912 0.82989936 0.93309981 0.67313132 0.76909568 0.98517477
+ [7] 0.83757175 0.04192069 0.60507935 0.40207487
+
+[[6]]
+ [1] 0.1289919 0.3819025 0.6841916 0.9084117 0.6997539 0.8869153 0.2037853
+ [8] 0.5993504 0.3111888 0.9467811
+
+[[7]]
+ [1] 0.3129789 0.6948044 0.6004674 0.4489564 0.9759687 0.4527747 0.4398853
+ [8] 0.6146934 0.6710584 0.4988146
+
+[[8]]
+ [1] 0.7450104 0.9621349 0.5265131 0.4325824 0.9410243 0.5493701 0.4876380
+ [8] 0.6830142 0.4809023 0.6774143
+
+[[9]]
+ [1] 0.998502133 0.677223510 0.942120661 0.211494741 0.242699349 0.997006043
+ [7] 0.366866922 0.862012290 0.795720466 0.008949387
+
+[[10]]
+ [1] 0.5614420 0.4546328 0.5728656 0.2095430 0.8278543 0.5241412 0.1813012
+ [8] 0.5413194 0.2923468 0.5334866</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW5saXN0KGxhcHBseShyb3duYW1lcyhtdGNhcnMpLG5jaGFyKSlcbmBgYCJ9 -->
+<pre class="r"><code>unlist(lapply(rownames(mtcars),nchar))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgOSAxMyAxMCAxNCAxNyAgNyAxMCAgOSAgOCAgOCAgOSAxMCAxMCAxMSAxOCAxOSAxNyAgOCAxMSAxNCAxMyAxNiAxMSAxMFxuWzI1XSAxNiAgOSAxMyAxMiAxNCAxMiAxMyAxMFxuIn0= -->
+<pre><code> [1]  9 13 10 14 17  7 10  9  8  8  9 10 10 11 18 19 17  8 11 14 13 16 11 10
+[25] 16  9 13 12 14 12 13 10</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmFuZG9tX2Z1bmN0aW9uIDwtIGZ1bmN0aW9uKG5hbWUpe1xuICBpZihtdGNhcnNbbmFtZSw5XT09MCl7XG4gICAgcHJpbnQobmFtZSlcbiAgICBwcmludChcIkF1dG9tYXRpY1wiKVxufVxuICBlbHNle1xuICAgXG4gICAgcHJpbnQobmFtZSlcbiAgICBwcmludChcIk5vbiBBdXRvbWF0aWNcIilcbiAgfVxuXG4gIFxuICBcbiAgXG59XG4gIFxuXG5gYGAifQ== -->
+<pre class="r"><code>random_function &lt;- function(name){
+  if(mtcars[name,9]==0){
+    print(name)
+    print(&quot;Automatic&quot;)
+}
+  else{
+   
+    print(name)
+    print(&quot;Non Automatic&quot;)
+  }
+
+  
+  
+  
+}
+  
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW5saXN0KHNhcHBseShyb3duYW1lcyhtdGNhcnMpLCAgZnVuY3Rpb24obmFtZSl7XG4gIGlmKG10Y2Fyc1tuYW1lLDldPT0wKXtcbiAgICBwcmludChuYW1lKVxuICAgIHByaW50KFwiQXV0b21hdGljXCIpXG59XG4gIGVsc2V7XG4gICBcbiAgICBwcmludChuYW1lKVxuICAgIHByaW50KFwiTm9uIEF1dG9tYXRpY1wiKVxuICB9XG5cbiAgXG4gIFxuICBcbn0pKVxuYGBgIn0= -->
+<pre class="r"><code>unlist(sapply(rownames(mtcars),  function(name){
+  if(mtcars[name,9]==0){
+    print(name)
+    print(&quot;Automatic&quot;)
+}
+  else{
+   
+    print(name)
+    print(&quot;Non Automatic&quot;)
+  }
+
+  
+  
+  
+}))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTWF6ZGEgUlg0XCJcblsxXSBcIk5vbiBBdXRvbWF0aWNcIlxuWzFdIFwiTWF6ZGEgUlg0IFdhZ1wiXG5bMV0gXCJOb24gQXV0b21hdGljXCJcblsxXSBcIkRhdHN1biA3MTBcIlxuWzFdIFwiTm9uIEF1dG9tYXRpY1wiXG5bMV0gXCJIb3JuZXQgNCBEcml2ZVwiXG5bMV0gXCJBdXRvbWF0aWNcIlxuWzFdIFwiSG9ybmV0IFNwb3J0YWJvdXRcIlxuWzFdIFwiQXV0b21hdGljXCJcblsxXSBcIlZhbGlhbnRcIlxuWzFdIFwiQXV0b21hdGljXCJcblsxXSBcIkR1c3RlciAzNjBcIlxuWzFdIFwiQXV0b21hdGljXCJcblsxXSBcIk1lcmMgMjQwRFwiXG5bMV0gXCJBdXRvbWF0aWNcIlxuWzFdIFwiTWVyYyAyMzBcIlxuWzFdIFwiQXV0b21hdGljXCJcblsxXSBcIk1lcmMgMjgwXCJcblsxXSBcIkF1dG9tYXRpY1wiXG5bMV0gXCJNZXJjIDI4MENcIlxuWzFdIFwiQXV0b21hdGljXCJcblsxXSBcIk1lcmMgNDUwU0VcIlxuWzFdIFwiQXV0b21hdGljXCJcblsxXSBcIk1lcmMgNDUwU0xcIlxuWzFdIFwiQXV0b21hdGljXCJcblsxXSBcIk1lcmMgNDUwU0xDXCJcblsxXSBcIkF1dG9tYXRpY1wiXG5bMV0gXCJDYWRpbGxhYyBGbGVldHdvb2RcIlxuWzFdIFwiQXV0b21hdGljXCJcblsxXSBcIkxpbmNvbG4gQ29udGluZW50YWxcIlxuWzFdIFwiQXV0b21hdGljXCJcblsxXSBcIkNocnlzbGVyIEltcGVyaWFsXCJcblsxXSBcIkF1dG9tYXRpY1wiXG5bMV0gXCJGaWF0IDEyOFwiXG5bMV0gXCJOb24gQXV0b21hdGljXCJcblsxXSBcIkhvbmRhIENpdmljXCJcblsxXSBcIk5vbiBBdXRvbWF0aWNcIlxuWzFdIFwiVG95b3RhIENvcm9sbGFcIlxuWzFdIFwiTm9uIEF1dG9tYXRpY1wiXG5bMV0gXCJUb3lvdGEgQ29yb25hXCJcblsxXSBcIkF1dG9tYXRpY1wiXG5bMV0gXCJEb2RnZSBDaGFsbGVuZ2VyXCJcblsxXSBcIkF1dG9tYXRpY1wiXG5bMV0gXCJBTUMgSmF2ZWxpblwiXG5bMV0gXCJBdXRvbWF0aWNcIlxuWzFdIFwiQ2FtYXJvIFoyOFwiXG5bMV0gXCJBdXRvbWF0aWNcIlxuWzFdIFwiUG9udGlhYyBGaXJlYmlyZFwiXG5bMV0gXCJBdXRvbWF0aWNcIlxuWzFdIFwiRmlhdCBYMS05XCJcblsxXSBcIk5vbiBBdXRvbWF0aWNcIlxuWzFdIFwiUG9yc2NoZSA5MTQtMlwiXG5bMV0gXCJOb24gQXV0b21hdGljXCJcblsxXSBcIkxvdHVzIEV1cm9wYVwiXG5bMV0gXCJOb24gQXV0b21hdGljXCJcblsxXSBcIkZvcmQgUGFudGVyYSBMXCJcblsxXSBcIk5vbiBBdXRvbWF0aWNcIlxuWzFdIFwiRmVycmFyaSBEaW5vXCJcblsxXSBcIk5vbiBBdXRvbWF0aWNcIlxuWzFdIFwiTWFzZXJhdGkgQm9yYVwiXG5bMV0gXCJOb24gQXV0b21hdGljXCJcblsxXSBcIlZvbHZvIDE0MkVcIlxuWzFdIFwiTm9uIEF1dG9tYXRpY1wiXG4gICAgICAgICAgTWF6ZGEgUlg0ICAgICAgIE1hemRhIFJYNCBXYWcgICAgICAgICAgRGF0c3VuIDcxMCBcbiAgICBcIk5vbiBBdXRvbWF0aWNcIiAgICAgXCJOb24gQXV0b21hdGljXCIgICAgIFwiTm9uIEF1dG9tYXRpY1wiIFxuICAgICBIb3JuZXQgNCBEcml2ZSAgIEhvcm5ldCBTcG9ydGFib3V0ICAgICAgICAgICAgIFZhbGlhbnQgXG4gICAgICAgIFwiQXV0b21hdGljXCIgICAgICAgICBcIkF1dG9tYXRpY1wiICAgICAgICAgXCJBdXRvbWF0aWNcIiBcbiAgICAgICAgIER1c3RlciAzNjAgICAgICAgICAgIE1lcmMgMjQwRCAgICAgICAgICAgIE1lcmMgMjMwIFxuICAgICAgICBcIkF1dG9tYXRpY1wiICAgICAgICAgXCJBdXRvbWF0aWNcIiAgICAgICAgIFwiQXV0b21hdGljXCIgXG4gICAgICAgICAgIE1lcmMgMjgwICAgICAgICAgICBNZXJjIDI4MEMgICAgICAgICAgTWVyYyA0NTBTRSBcbiAgICAgICAgXCJBdXRvbWF0aWNcIiAgICAgICAgIFwiQXV0b21hdGljXCIgICAgICAgICBcIkF1dG9tYXRpY1wiIFxuICAgICAgICAgTWVyYyA0NTBTTCAgICAgICAgIE1lcmMgNDUwU0xDICBDYWRpbGxhYyBGbGVldHdvb2QgXG4gICAgICAgIFwiQXV0b21hdGljXCIgICAgICAgICBcIkF1dG9tYXRpY1wiICAgICAgICAgXCJBdXRvbWF0aWNcIiBcbkxpbmNvbG4gQ29udGluZW50YWwgICBDaHJ5c2xlciBJbXBlcmlhbCAgICAgICAgICAgIEZpYXQgMTI4IFxuICAgICAgICBcIkF1dG9tYXRpY1wiICAgICAgICAgXCJBdXRvbWF0aWNcIiAgICAgXCJOb24gQXV0b21hdGljXCIgXG4gICAgICAgIEhvbmRhIENpdmljICAgICAgVG95b3RhIENvcm9sbGEgICAgICAgVG95b3RhIENvcm9uYSBcbiAgICBcIk5vbiBBdXRvbWF0aWNcIiAgICAgXCJOb24gQXV0b21hdGljXCIgICAgICAgICBcIkF1dG9tYXRpY1wiIFxuICAgRG9kZ2UgQ2hhbGxlbmdlciAgICAgICAgIEFNQyBKYXZlbGluICAgICAgICAgIENhbWFybyBaMjggXG4gICAgICAgIFwiQXV0b21hdGljXCIgICAgICAgICBcIkF1dG9tYXRpY1wiICAgICAgICAgXCJBdXRvbWF0aWNcIiBcbiAgIFBvbnRpYWMgRmlyZWJpcmQgICAgICAgICAgIEZpYXQgWDEtOSAgICAgICBQb3JzY2hlIDkxNC0yIFxuICAgICAgICBcIkF1dG9tYXRpY1wiICAgICBcIk5vbiBBdXRvbWF0aWNcIiAgICAgXCJOb24gQXV0b21hdGljXCIgXG4gICAgICAgTG90dXMgRXVyb3BhICAgICAgRm9yZCBQYW50ZXJhIEwgICAgICAgIEZlcnJhcmkgRGlubyBcbiAgICBcIk5vbiBBdXRvbWF0aWNcIiAgICAgXCJOb24gQXV0b21hdGljXCIgICAgIFwiTm9uIEF1dG9tYXRpY1wiIFxuICAgICAgTWFzZXJhdGkgQm9yYSAgICAgICAgICBWb2x2byAxNDJFIFxuICAgIFwiTm9uIEF1dG9tYXRpY1wiICAgICBcIk5vbiBBdXRvbWF0aWNcIiBcbiJ9 -->
+<pre><code>[1] &quot;Mazda RX4&quot;
+[1] &quot;Non Automatic&quot;
+[1] &quot;Mazda RX4 Wag&quot;
+[1] &quot;Non Automatic&quot;
+[1] &quot;Datsun 710&quot;
+[1] &quot;Non Automatic&quot;
+[1] &quot;Hornet 4 Drive&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Hornet Sportabout&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Valiant&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Duster 360&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Merc 240D&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Merc 230&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Merc 280&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Merc 280C&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Merc 450SE&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Merc 450SL&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Merc 450SLC&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Cadillac Fleetwood&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Lincoln Continental&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Chrysler Imperial&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Fiat 128&quot;
+[1] &quot;Non Automatic&quot;
+[1] &quot;Honda Civic&quot;
+[1] &quot;Non Automatic&quot;
+[1] &quot;Toyota Corolla&quot;
+[1] &quot;Non Automatic&quot;
+[1] &quot;Toyota Corona&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Dodge Challenger&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;AMC Javelin&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Camaro Z28&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Pontiac Firebird&quot;
+[1] &quot;Automatic&quot;
+[1] &quot;Fiat X1-9&quot;
+[1] &quot;Non Automatic&quot;
+[1] &quot;Porsche 914-2&quot;
+[1] &quot;Non Automatic&quot;
+[1] &quot;Lotus Europa&quot;
+[1] &quot;Non Automatic&quot;
+[1] &quot;Ford Pantera L&quot;
+[1] &quot;Non Automatic&quot;
+[1] &quot;Ferrari Dino&quot;
+[1] &quot;Non Automatic&quot;
+[1] &quot;Maserati Bora&quot;
+[1] &quot;Non Automatic&quot;
+[1] &quot;Volvo 142E&quot;
+[1] &quot;Non Automatic&quot;
+          Mazda RX4       Mazda RX4 Wag          Datsun 710 
+    &quot;Non Automatic&quot;     &quot;Non Automatic&quot;     &quot;Non Automatic&quot; 
+     Hornet 4 Drive   Hornet Sportabout             Valiant 
+        &quot;Automatic&quot;         &quot;Automatic&quot;         &quot;Automatic&quot; 
+         Duster 360           Merc 240D            Merc 230 
+        &quot;Automatic&quot;         &quot;Automatic&quot;         &quot;Automatic&quot; 
+           Merc 280           Merc 280C          Merc 450SE 
+        &quot;Automatic&quot;         &quot;Automatic&quot;         &quot;Automatic&quot; 
+         Merc 450SL         Merc 450SLC  Cadillac Fleetwood 
+        &quot;Automatic&quot;         &quot;Automatic&quot;         &quot;Automatic&quot; 
+Lincoln Continental   Chrysler Imperial            Fiat 128 
+        &quot;Automatic&quot;         &quot;Automatic&quot;     &quot;Non Automatic&quot; 
+        Honda Civic      Toyota Corolla       Toyota Corona 
+    &quot;Non Automatic&quot;     &quot;Non Automatic&quot;         &quot;Automatic&quot; 
+   Dodge Challenger         AMC Javelin          Camaro Z28 
+        &quot;Automatic&quot;         &quot;Automatic&quot;         &quot;Automatic&quot; 
+   Pontiac Firebird           Fiat X1-9       Porsche 914-2 
+        &quot;Automatic&quot;     &quot;Non Automatic&quot;     &quot;Non Automatic&quot; 
+       Lotus Europa      Ford Pantera L        Ferrari Dino 
+    &quot;Non Automatic&quot;     &quot;Non Automatic&quot;     &quot;Non Automatic&quot; 
+      Maserati Bora          Volvo 142E 
+    &quot;Non Automatic&quot;     &quot;Non Automatic&quot; </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5mMiA8LWZ1bmN0aW9uKG5hbWUpe1xuICBpZihtdGNhcnNbbmFtZSw5XT09MCl7XG4gICAgXG4gICAgcHJpbnQoXCJBdXRvbWF0aWMgPSBcIiwgbmFtZSlcbiAgfVxuICBlbHNle1xuICAgIHByaW50KFwiTm9uIGF1dG9tYXRpYyA9IFwiLCBuYW1lKVxuICAgIFxuICAgIFxuICB9XG4gIFxuICBcbn1cblxuXG5cbmBgYCJ9 -->
+<pre class="r"><code>
+f2 &lt;-function(name){
+  if(mtcars[name,9]==0){
+    
+    print(&quot;Automatic = &quot;, name)
+  }
+  else{
+    print(&quot;Non automatic = &quot;, name)
+    
+    
+  }
+  
+  
+}
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueW1kKFwiMjAyMC0xMi0wMVwiKVxuYGBgIn0= -->
-<pre class="r"><code>ymd(&quot;2020-12-01&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5tZnVuIDwtIGZ1bmN0aW9uKG5hbWUpe1xuICBpZihtdGNhcnNbbmFtZSw5XSA9PSAwKVxuICAgIFxuICAgbmFtZVxuIFxuICBcbiAgZWxzZVxuICAgIFxuICAgIE5BXG4gIFxuICBcbiAgXG59XG5cblxuXG5gYGAifQ== -->
+<pre class="r"><code>
+mfun &lt;- function(name){
+  if(mtcars[name,9] == 0)
+    
+   name
+ 
+  
+  else
+    
+    NA
+  
+  
+  
+}
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5jYXJfY2F0IDwtIHVubGlzdChsYXBwbHkocm93bmFtZXMobXRjYXJzKSwgbWZ1bikpXG5cblxuYGBgIn0= -->
+<pre class="r"><code>
+car_cat &lt;- unlist(lapply(rownames(mtcars), mfun))
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KYGBge3J9DQpsaWJyYXJ5KCJsdWJyaWRhdGUiKQ0KDQp0b2RheSgpDQpub3coKQ0KDQoNCg0KDQpgYGANCmBgYHtyfQ0KeW1kKCIyMDIwLTEyLTAxIikNCmBgYA0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCnJlcCgxMCwxMCkNCmBgYA0KYGBge3J9DQpsYXBwbHkocmVwKDEwLDEwKSxydW5pZikNCmBgYA0KYGBge3J9DQp1bmxpc3QobGFwcGx5KHJvd25hbWVzKG10Y2FycyksbmNoYXIpKQ0KYGBgDQpgYGB7cn0NCnJhbmRvbV9mdW5jdGlvbiA8LSBmdW5jdGlvbihuYW1lKXsNCiAgaWYobXRjYXJzW25hbWUsOV09PTApew0KICAgIHByaW50KG5hbWUpDQogICAgcHJpbnQoIkF1dG9tYXRpYyIpDQp9DQogIGVsc2V7DQogICANCiAgICBwcmludChuYW1lKQ0KICAgIHByaW50KCJOb24gQXV0b21hdGljIikNCiAgfQ0KDQogIA0KICANCiAgDQp9DQogIA0KDQpgYGANCg0KYGBge3J9DQp1bmxpc3Qoc2FwcGx5KHJvd25hbWVzKG10Y2FycyksICBmdW5jdGlvbihuYW1lKXsNCiAgaWYobXRjYXJzW25hbWUsOV09PTApew0KICAgIHByaW50KG5hbWUpDQogICAgcHJpbnQoIkF1dG9tYXRpYyIpDQp9DQogIGVsc2V7DQogICANCiAgICBwcmludChuYW1lKQ0KICAgIHByaW50KCJOb24gQXV0b21hdGljIikNCiAgfQ0KDQogIA0KICANCiAgDQp9KSkNCmBgYA0KDQpgYGB7cn0NCg0KZjIgPC1mdW5jdGlvbihuYW1lKXsNCiAgaWYobXRjYXJzW25hbWUsOV09PTApew0KICAgIA0KICAgIHByaW50KCJBdXRvbWF0aWMgPSAiLCBuYW1lKQ0KICB9DQogIGVsc2V7DQogICAgcHJpbnQoIk5vbiBhdXRvbWF0aWMgPSAiLCBuYW1lKQ0KICAgIA0KICAgIA0KICB9DQogIA0KICANCn0NCg0KDQoNCmBgYA0KYGBge3J9DQoNCm1mdW4gPC0gZnVuY3Rpb24obmFtZSl7DQogIGlmKG10Y2Fyc1tuYW1lLDldID09IDApDQogICAgDQogICBuYW1lDQogDQogIA0KICBlbHNlDQogICAgDQogICAgTkENCiAgDQogIA0KICANCn0NCg0KDQoNCmBgYA0KYGBge3J9DQoNCmNhcl9jYXQgPC0gdW5saXN0KGxhcHBseShyb3duYW1lcyhtdGNhcnMpLCBtZnVuKSkNCg0KDQpgYGANCg0K</div>
 
 
 
@@ -1875,7 +2101,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("Dates & Times in R.Rmd");
+  window.initializeSourceEmbed("Functional Programming.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

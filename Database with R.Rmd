@@ -1,0 +1,28 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(DBI)
+library(RSQLite)
+```
+
+
+```{r}
+
+
+con <- dbConnect(RSQLite::SQLite(),dbname=":memory:")
+
+```
+
+
+```{r}
+
+dbListTables(con)
+
+```
+```{r}
+dbWriteTable(con,"mtcars_table4",mtcars)
+```
+

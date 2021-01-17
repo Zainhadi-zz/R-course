@@ -1,0 +1,48 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+Filter Function for Rows
+```{r}
+library(dplyr)
+
+starwars %>% 
+  filter(hair_color!="black" & mass>100)
+
+
+
+```
+Select Function used for filtering Columns 
+```{r}
+starwars %>%
+  select(height:birth_year,-hair_color)
+
+```
+```{r}
+library(dplyr)
+starwars %>%
+  select(height,mass,hair_color,everything())
+```
+
+```{r}
+starwars %>%
+  select(name,ends_with("color")) %>%
+  head()
+```
+
+
+Mutate Function used for changing and adding columns
+```{r}
+
+
+```
+Arrange Function used to arrange rows in ascending or descending order
+```{r}
+
+```
+
+Summarize Function
+```{r}
+
+```
+

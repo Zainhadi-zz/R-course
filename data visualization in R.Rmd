@@ -1,0 +1,34 @@
+---
+title: "Data Visualization"
+output: html_notebook
+---
+
+we will use tidyverse package
+package name is : ggplot2
+```{r}
+library(ggplot2)
+library(dplyr)
+library(skimr)
+```
+
+```{r}
+mtcars
+
+```
+
+```{r}
+skimr::skim(starwars)
+```
+
+```{r}
+mtcars %>%
+  select(disp,cyl)
+
+
+```
+
+```{r}
+ggplot(data = mtcars,mapping = aes(x = disp, y= cyl)) +
+geom_point()
+```
+

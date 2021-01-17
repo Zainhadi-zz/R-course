@@ -1810,25 +1810,99 @@ summary {
 
 
 <!-- rnb-text-begin -->
+<p>From json to json lists or whatever you want to json</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShcImx1YnJpZGF0ZVwiKVxuXG50b2RheSgpXG5ub3coKVxuXG5cblxuXG5gYGAifQ== -->
-<pre class="r"><code>library(&quot;lubridate&quot;)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShqc29ubGl0ZSlcblxubXRjYXJzX2pzb24gPC0gdG9KU09OKG10Y2FycylcblxuXG5tdGNhcnNfanNvblxuYGBgIn0= -->
+<pre class="r"><code>library(jsonlite)
 
-today()
-now()
+mtcars_json &lt;- toJSON(mtcars)
+
+
+mtcars_json</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW3tcIm1wZ1wiOjIxLFwiY3lsXCI6NixcImRpc3BcIjoxNjAsXCJocFwiOjExMCxcImRyYXRcIjozLjksXCJ3dFwiOjIuNjIsXCJxc2VjXCI6MTYuNDYsXCJ2c1wiOjAsXCJhbVwiOjEsXCJnZWFyXCI6NCxcImNhcmJcIjo0LFwiX3Jvd1wiOlwiTWF6ZGEgUlg0XCJ9LHtcIm1wZ1wiOjIxLFwiY3lsXCI6NixcImRpc3BcIjoxNjAsXCJocFwiOjExMCxcImRyYXRcIjozLjksXCJ3dFwiOjIuODc1LFwicXNlY1wiOjE3LjAyLFwidnNcIjowLFwiYW1cIjoxLFwiZ2VhclwiOjQsXCJjYXJiXCI6NCxcIl9yb3dcIjpcIk1hemRhIFJYNCBXYWdcIn0se1wibXBnXCI6MjIuOCxcImN5bFwiOjQsXCJkaXNwXCI6MTA4LFwiaHBcIjo5MyxcImRyYXRcIjozLjg1LFwid3RcIjoyLjMyLFwicXNlY1wiOjE4LjYxLFwidnNcIjoxLFwiYW1cIjoxLFwiZ2VhclwiOjQsXCJjYXJiXCI6MSxcIl9yb3dcIjpcIkRhdHN1biA3MTBcIn0se1wibXBnXCI6MjEuNCxcImN5bFwiOjYsXCJkaXNwXCI6MjU4LFwiaHBcIjoxMTAsXCJkcmF0XCI6My4wOCxcInd0XCI6My4yMTUsXCJxc2VjXCI6MTkuNDQsXCJ2c1wiOjEsXCJhbVwiOjAsXCJnZWFyXCI6MyxcImNhcmJcIjoxLFwiX3Jvd1wiOlwiSG9ybmV0IDQgRHJpdmVcIn0se1wibXBnXCI6MTguNyxcImN5bFwiOjgsXCJkaXNwXCI6MzYwLFwiaHBcIjoxNzUsXCJkcmF0XCI6My4xNSxcInd0XCI6My40NCxcInFzZWNcIjoxNy4wMixcInZzXCI6MCxcImFtXCI6MCxcImdlYXJcIjozLFwiY2FyYlwiOjIsXCJfcm93XCI6XCJIb3JuZXQgU3BvcnRhYm91dFwifSx7XCJtcGdcIjoxOC4xLFwiY3lsXCI6NixcImRpc3BcIjoyMjUsXCJocFwiOjEwNSxcImRyYXRcIjoyLjc2LFwid3RcIjozLjQ2LFwicXNlY1wiOjIwLjIyLFwidnNcIjoxLFwiYW1cIjowLFwiZ2VhclwiOjMsXCJjYXJiXCI6MSxcIl9yb3dcIjpcIlZhbGlhbnRcIn0se1wibXBnXCI6MTQuMyxcImN5bFwiOjgsXCJkaXNwXCI6MzYwLFwiaHBcIjoyNDUsXCJkcmF0XCI6My4yMSxcInd0XCI6My41NyxcInFzZWNcIjoxNS44NCxcInZzXCI6MCxcImFtXCI6MCxcImdlYXJcIjozLFwiY2FyYlwiOjQsXCJfcm93XCI6XCJEdXN0ZXIgMzYwXCJ9LHtcIm1wZ1wiOjI0LjQsXCJjeWxcIjo0LFwiZGlzcFwiOjE0Ni43LFwiaHBcIjo2MixcImRyYXRcIjozLjY5LFwid3RcIjozLjE5LFwicXNlY1wiOjIwLFwidnNcIjoxLFwiYW1cIjowLFwiZ2VhclwiOjQsXCJjYXJiXCI6MixcIl9yb3dcIjpcIk1lcmMgMjQwRFwifSx7XCJtcGdcIjoyMi44LFwiY3lsXCI6NCxcImRpc3BcIjoxNDAuOCxcImhwXCI6OTUsXCJkcmF0XCI6My45MixcInd0XCI6My4xNSxcInFzZWNcIjoyMi45LFwidnNcIjoxLFwiYW1cIjowLFwiZ2VhclwiOjQsXCJjYXJiXCI6MixcIl9yb3dcIjpcIk1lcmMgMjMwXCJ9LHtcIm1wZ1wiOjE5LjIsXCJjeWxcIjo2LFwiZGlzcFwiOjE2Ny42LFwiaHBcIjoxMjMsXCJkcmF0XCI6My45MixcInd0XCI6My40NCxcInFzZWNcIjoxOC4zLFwidnNcIjoxLFwiYW1cIjowLFwiZ2VhclwiOjQsXCJjYXJiXCI6NCxcIl9yb3dcIjpcIk1lcmMgMjgwXCJ9LHtcIm1wZ1wiOjE3LjgsXCJjeWxcIjo2LFwiZGlzcFwiOjE2Ny42LFwiaHBcIjoxMjMsXCJkcmF0XCI6My45MixcInd0XCI6My40NCxcInFzZWNcIjoxOC45LFwidnNcIjoxLFwiYW1cIjowLFwiZ2VhclwiOjQsXCJjYXJiXCI6NCxcIl9yb3dcIjpcIk1lcmMgMjgwQ1wifSx7XCJtcGdcIjoxNi40LFwiY3lsXCI6OCxcImRpc3BcIjoyNzUuOCxcImhwXCI6MTgwLFwiZHJhdFwiOjMuMDcsXCJ3dFwiOjQuMDcsXCJxc2VjXCI6MTcuNCxcInZzXCI6MCxcImFtXCI6MCxcImdlYXJcIjozLFwiY2FyYlwiOjMsXCJfcm93XCI6XCJNZXJjIDQ1MFNFXCJ9LHtcIm1wZ1wiOjE3LjMsXCJjeWxcIjo4LFwiZGlzcFwiOjI3NS44LFwiaHBcIjoxODAsXCJkcmF0XCI6My4wNyxcInd0XCI6My43MyxcInFzZWNcIjoxNy42LFwidnNcIjowLFwiYW1cIjowLFwiZ2VhclwiOjMsXCJjYXJiXCI6MyxcIl9yb3dcIjpcIk1lcmMgNDUwU0xcIn0se1wibXBnXCI6MTUuMixcImN5bFwiOjgsXCJkaXNwXCI6Mjc1LjgsXCJocFwiOjE4MCxcImRyYXRcIjozLjA3LFwid3RcIjozLjc4LFwicXNlY1wiOjE4LFwidnNcIjowLFwiYW1cIjowLFwiZ2VhclwiOjMsXCJjYXJiXCI6MyxcIl9yb3dcIjpcIk1lcmMgNDUwU0xDXCJ9LHtcIm1wZ1wiOjEwLjQsXCJjeWxcIjo4LFwiZGlzcFwiOjQ3MixcImhwXCI6MjA1LFwiZHJhdFwiOjIuOTMsXCJ3dFwiOjUuMjUsXCJxc2VjXCI6MTcuOTgsXCJ2c1wiOjAsXCJhbVwiOjAsXCJnZWFyXCI6MyxcImNhcmJcIjo0LFwiX3Jvd1wiOlwiQ2FkaWxsYWMgRmxlZXR3b29kXCJ9LHtcIm1wZ1wiOjEwLjQsXCJjeWxcIjo4LFwiZGlzcFwiOjQ2MCxcImhwXCI6MjE1LFwiZHJhdFwiOjMsXCJ3dFwiOjUuNDI0LFwicXNlY1wiOjE3LjgyLFwidnNcIjowLFwiYW1cIjowLFwiZ2VhclwiOjMsXCJjYXJiXCI6NCxcIl9yb3dcIjpcIkxpbmNvbG4gQ29udGluZW50YWxcIn0se1wibXBnXCI6MTQuNyxcImN5bFwiOjgsXCJkaXNwXCI6NDQwLFwiaHBcIjoyMzAsXCJkcmF0XCI6My4yMyxcInd0XCI6NS4zNDUsXCJxc2VjXCI6MTcuNDIsXCJ2c1wiOjAsXCJhbVwiOjAsXCJnZWFyXCI6MyxcImNhcmJcIjo0LFwiX3Jvd1wiOlwiQ2hyeXNsZXIgSW1wZXJpYWxcIn0se1wibXBnXCI6MzIuNCxcImN5bFwiOjQsXCJkaXNwXCI6NzguNyxcImhwXCI6NjYsXCJkcmF0XCI6NC4wOCxcInd0XCI6Mi4yLFwicXNlY1wiOjE5LjQ3LFwidnNcIjoxLFwiYW1cIjoxLFwiZ2VhclwiOjQsXCJjYXJiXCI6MSxcIl9yb3dcIjpcIkZpYXQgMTI4XCJ9LHtcIm1wZ1wiOjMwLjQsXCJjeWxcIjo0LFwiZGlzcFwiOjc1LjcsXCJocFwiOjUyLFwiZHJhdFwiOjQuOTMsXCJ3dFwiOjEuNjE1LFwicXNlY1wiOjE4LjUyLFwidnNcIjoxLFwiYW1cIjoxLFwiZ2VhclwiOjQsXCJjYXJiXCI6MixcIl9yb3dcIjpcIkhvbmRhIENpdmljXCJ9LHtcIm1wZ1wiOjMzLjksXCJjeWxcIjo0LFwiZGlzcFwiOjcxLjEsXCJocFwiOjY1LFwiZHJhdFwiOjQuMjIsXCJ3dFwiOjEuODM1LFwicXNlY1wiOjE5LjksXCJ2c1wiOjEsXCJhbVwiOjEsXCJnZWFyXCI6NCxcImNhcmJcIjoxLFwiX3Jvd1wiOlwiVG95b3RhIENvcm9sbGFcIn0se1wibXBnXCI6MjEuNSxcImN5bFwiOjQsXCJkaXNwXCI6MTIwLjEsXCJocFwiOjk3LFwiZHJhdFwiOjMuNyxcInd0XCI6Mi40NjUsXCJxc2VjXCI6MjAuMDEsXCJ2c1wiOjEsXCJhbVwiOjAsXCJnZWFyXCI6MyxcImNhcmJcIjoxLFwiX3Jvd1wiOlwiVG95b3RhIENvcm9uYVwifSx7XCJtcGdcIjoxNS41LFwiY3lsXCI6OCxcImRpc3BcIjozMTgsXCJocFwiOjE1MCxcImRyYXRcIjoyLjc2LFwid3RcIjozLjUyLFwicXNlY1wiOjE2Ljg3LFwidnNcIjowLFwiYW1cIjowLFwiZ2VhclwiOjMsXCJjYXJiXCI6MixcIl9yb3dcIjpcIkRvZGdlIENoYWxsZW5nZXJcIn0se1wibXBnXCI6MTUuMixcImN5bFwiOjgsXCJkaXNwXCI6MzA0LFwiaHBcIjoxNTAsXCJkcmF0XCI6My4xNSxcInd0XCI6My40MzUsXCJxc2VjXCI6MTcuMyxcInZzXCI6MCxcImFtXCI6MCxcImdlYXJcIjozLFwiY2FyYlwiOjIsXCJfcm93XCI6XCJBTUMgSmF2ZWxpblwifSx7XCJtcGdcIjoxMy4zLFwiY3lsXCI6OCxcImRpc3BcIjozNTAsXCJocFwiOjI0NSxcImRyYXRcIjozLjczLFwid3RcIjozLjg0LFwicXNlY1wiOjE1LjQxLFwidnNcIjowLFwiYW1cIjowLFwiZ2VhclwiOjMsXCJjYXJiXCI6NCxcIl9yb3dcIjpcIkNhbWFybyBaMjhcIn0se1wibXBnXCI6MTkuMixcImN5bFwiOjgsXCJkaXNwXCI6NDAwLFwiaHBcIjoxNzUsXCJkcmF0XCI6My4wOCxcInd0XCI6My44NDUsXCJxc2VjXCI6MTcuMDUsXCJ2c1wiOjAsXCJhbVwiOjAsXCJnZWFyXCI6MyxcImNhcmJcIjoyLFwiX3Jvd1wiOlwiUG9udGlhYyBGaXJlYmlyZFwifSx7XCJtcGdcIjoyNy4zLFwiY3lsXCI6NCxcImRpc3BcIjo3OSxcImhwXCI6NjYsXCJkcmF0XCI6NC4wOCxcInd0XCI6MS45MzUsXCJxc2VjXCI6MTguOSxcInZzXCI6MSxcImFtXCI6MSxcImdlYXJcIjo0LFwiY2FyYlwiOjEsXCJfcm93XCI6XCJGaWF0IFgxLTlcIn0se1wibXBnXCI6MjYsXCJjeWxcIjo0LFwiZGlzcFwiOjEyMC4zLFwiaHBcIjo5MSxcImRyYXRcIjo0LjQzLFwid3RcIjoyLjE0LFwicXNlY1wiOjE2LjcsXCJ2c1wiOjAsXCJhbVwiOjEsXCJnZWFyXCI6NSxcImNhcmJcIjoyLFwiX3Jvd1wiOlwiUG9yc2NoZSA5MTQtMlwifSx7XCJtcGdcIjozMC40LFwiY3lsXCI6NCxcImRpc3BcIjo5NS4xLFwiaHBcIjoxMTMsXCJkcmF0XCI6My43NyxcInd0XCI6MS41MTMsXCJxc2VjXCI6MTYuOSxcInZzXCI6MSxcImFtXCI6MSxcImdlYXJcIjo1LFwiY2FyYlwiOjIsXCJfcm93XCI6XCJMb3R1cyBFdXJvcGFcIn0se1wibXBnXCI6MTUuOCxcImN5bFwiOjgsXCJkaXNwXCI6MzUxLFwiaHBcIjoyNjQsXCJkcmF0XCI6NC4yMixcInd0XCI6My4xNyxcInFzZWNcIjoxNC41LFwidnNcIjowLFwiYW1cIjoxLFwiZ2VhclwiOjUsXCJjYXJiXCI6NCxcIl9yb3dcIjpcIkZvcmQgUGFudGVyYSBMXCJ9LHtcIm1wZ1wiOjE5LjcsXCJjeWxcIjo2LFwiZGlzcFwiOjE0NSxcImhwXCI6MTc1LFwiZHJhdFwiOjMuNjIsXCJ3dFwiOjIuNzcsXCJxc2VjXCI6MTUuNSxcInZzXCI6MCxcImFtXCI6MSxcImdlYXJcIjo1LFwiY2FyYlwiOjYsXCJfcm93XCI6XCJGZXJyYXJpIERpbm9cIn0se1wibXBnXCI6MTUsXCJjeWxcIjo4LFwiZGlzcFwiOjMwMSxcImhwXCI6MzM1LFwiZHJhdFwiOjMuNTQsXCJ3dFwiOjMuNTcsXCJxc2VjXCI6MTQuNixcInZzXCI6MCxcImFtXCI6MSxcImdlYXJcIjo1LFwiY2FyYlwiOjgsXCJfcm93XCI6XCJNYXNlcmF0aSBCb3JhXCJ9LHtcIm1wZ1wiOjIxLjQsXCJjeWxcIjo0LFwiZGlzcFwiOjEyMSxcImhwXCI6MTA5LFwiZHJhdFwiOjQuMTEsXCJ3dFwiOjIuNzgsXCJxc2VjXCI6MTguNixcInZzXCI6MSxcImFtXCI6MSxcImdlYXJcIjo0LFwiY2FyYlwiOjIsXCJfcm93XCI6XCJWb2x2byAxNDJFXCJ9XSBcbiJ9 -->
+<pre><code>[{&quot;mpg&quot;:21,&quot;cyl&quot;:6,&quot;disp&quot;:160,&quot;hp&quot;:110,&quot;drat&quot;:3.9,&quot;wt&quot;:2.62,&quot;qsec&quot;:16.46,&quot;vs&quot;:0,&quot;am&quot;:1,&quot;gear&quot;:4,&quot;carb&quot;:4,&quot;_row&quot;:&quot;Mazda RX4&quot;},{&quot;mpg&quot;:21,&quot;cyl&quot;:6,&quot;disp&quot;:160,&quot;hp&quot;:110,&quot;drat&quot;:3.9,&quot;wt&quot;:2.875,&quot;qsec&quot;:17.02,&quot;vs&quot;:0,&quot;am&quot;:1,&quot;gear&quot;:4,&quot;carb&quot;:4,&quot;_row&quot;:&quot;Mazda RX4 Wag&quot;},{&quot;mpg&quot;:22.8,&quot;cyl&quot;:4,&quot;disp&quot;:108,&quot;hp&quot;:93,&quot;drat&quot;:3.85,&quot;wt&quot;:2.32,&quot;qsec&quot;:18.61,&quot;vs&quot;:1,&quot;am&quot;:1,&quot;gear&quot;:4,&quot;carb&quot;:1,&quot;_row&quot;:&quot;Datsun 710&quot;},{&quot;mpg&quot;:21.4,&quot;cyl&quot;:6,&quot;disp&quot;:258,&quot;hp&quot;:110,&quot;drat&quot;:3.08,&quot;wt&quot;:3.215,&quot;qsec&quot;:19.44,&quot;vs&quot;:1,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:1,&quot;_row&quot;:&quot;Hornet 4 Drive&quot;},{&quot;mpg&quot;:18.7,&quot;cyl&quot;:8,&quot;disp&quot;:360,&quot;hp&quot;:175,&quot;drat&quot;:3.15,&quot;wt&quot;:3.44,&quot;qsec&quot;:17.02,&quot;vs&quot;:0,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:2,&quot;_row&quot;:&quot;Hornet Sportabout&quot;},{&quot;mpg&quot;:18.1,&quot;cyl&quot;:6,&quot;disp&quot;:225,&quot;hp&quot;:105,&quot;drat&quot;:2.76,&quot;wt&quot;:3.46,&quot;qsec&quot;:20.22,&quot;vs&quot;:1,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:1,&quot;_row&quot;:&quot;Valiant&quot;},{&quot;mpg&quot;:14.3,&quot;cyl&quot;:8,&quot;disp&quot;:360,&quot;hp&quot;:245,&quot;drat&quot;:3.21,&quot;wt&quot;:3.57,&quot;qsec&quot;:15.84,&quot;vs&quot;:0,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:4,&quot;_row&quot;:&quot;Duster 360&quot;},{&quot;mpg&quot;:24.4,&quot;cyl&quot;:4,&quot;disp&quot;:146.7,&quot;hp&quot;:62,&quot;drat&quot;:3.69,&quot;wt&quot;:3.19,&quot;qsec&quot;:20,&quot;vs&quot;:1,&quot;am&quot;:0,&quot;gear&quot;:4,&quot;carb&quot;:2,&quot;_row&quot;:&quot;Merc 240D&quot;},{&quot;mpg&quot;:22.8,&quot;cyl&quot;:4,&quot;disp&quot;:140.8,&quot;hp&quot;:95,&quot;drat&quot;:3.92,&quot;wt&quot;:3.15,&quot;qsec&quot;:22.9,&quot;vs&quot;:1,&quot;am&quot;:0,&quot;gear&quot;:4,&quot;carb&quot;:2,&quot;_row&quot;:&quot;Merc 230&quot;},{&quot;mpg&quot;:19.2,&quot;cyl&quot;:6,&quot;disp&quot;:167.6,&quot;hp&quot;:123,&quot;drat&quot;:3.92,&quot;wt&quot;:3.44,&quot;qsec&quot;:18.3,&quot;vs&quot;:1,&quot;am&quot;:0,&quot;gear&quot;:4,&quot;carb&quot;:4,&quot;_row&quot;:&quot;Merc 280&quot;},{&quot;mpg&quot;:17.8,&quot;cyl&quot;:6,&quot;disp&quot;:167.6,&quot;hp&quot;:123,&quot;drat&quot;:3.92,&quot;wt&quot;:3.44,&quot;qsec&quot;:18.9,&quot;vs&quot;:1,&quot;am&quot;:0,&quot;gear&quot;:4,&quot;carb&quot;:4,&quot;_row&quot;:&quot;Merc 280C&quot;},{&quot;mpg&quot;:16.4,&quot;cyl&quot;:8,&quot;disp&quot;:275.8,&quot;hp&quot;:180,&quot;drat&quot;:3.07,&quot;wt&quot;:4.07,&quot;qsec&quot;:17.4,&quot;vs&quot;:0,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:3,&quot;_row&quot;:&quot;Merc 450SE&quot;},{&quot;mpg&quot;:17.3,&quot;cyl&quot;:8,&quot;disp&quot;:275.8,&quot;hp&quot;:180,&quot;drat&quot;:3.07,&quot;wt&quot;:3.73,&quot;qsec&quot;:17.6,&quot;vs&quot;:0,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:3,&quot;_row&quot;:&quot;Merc 450SL&quot;},{&quot;mpg&quot;:15.2,&quot;cyl&quot;:8,&quot;disp&quot;:275.8,&quot;hp&quot;:180,&quot;drat&quot;:3.07,&quot;wt&quot;:3.78,&quot;qsec&quot;:18,&quot;vs&quot;:0,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:3,&quot;_row&quot;:&quot;Merc 450SLC&quot;},{&quot;mpg&quot;:10.4,&quot;cyl&quot;:8,&quot;disp&quot;:472,&quot;hp&quot;:205,&quot;drat&quot;:2.93,&quot;wt&quot;:5.25,&quot;qsec&quot;:17.98,&quot;vs&quot;:0,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:4,&quot;_row&quot;:&quot;Cadillac Fleetwood&quot;},{&quot;mpg&quot;:10.4,&quot;cyl&quot;:8,&quot;disp&quot;:460,&quot;hp&quot;:215,&quot;drat&quot;:3,&quot;wt&quot;:5.424,&quot;qsec&quot;:17.82,&quot;vs&quot;:0,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:4,&quot;_row&quot;:&quot;Lincoln Continental&quot;},{&quot;mpg&quot;:14.7,&quot;cyl&quot;:8,&quot;disp&quot;:440,&quot;hp&quot;:230,&quot;drat&quot;:3.23,&quot;wt&quot;:5.345,&quot;qsec&quot;:17.42,&quot;vs&quot;:0,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:4,&quot;_row&quot;:&quot;Chrysler Imperial&quot;},{&quot;mpg&quot;:32.4,&quot;cyl&quot;:4,&quot;disp&quot;:78.7,&quot;hp&quot;:66,&quot;drat&quot;:4.08,&quot;wt&quot;:2.2,&quot;qsec&quot;:19.47,&quot;vs&quot;:1,&quot;am&quot;:1,&quot;gear&quot;:4,&quot;carb&quot;:1,&quot;_row&quot;:&quot;Fiat 128&quot;},{&quot;mpg&quot;:30.4,&quot;cyl&quot;:4,&quot;disp&quot;:75.7,&quot;hp&quot;:52,&quot;drat&quot;:4.93,&quot;wt&quot;:1.615,&quot;qsec&quot;:18.52,&quot;vs&quot;:1,&quot;am&quot;:1,&quot;gear&quot;:4,&quot;carb&quot;:2,&quot;_row&quot;:&quot;Honda Civic&quot;},{&quot;mpg&quot;:33.9,&quot;cyl&quot;:4,&quot;disp&quot;:71.1,&quot;hp&quot;:65,&quot;drat&quot;:4.22,&quot;wt&quot;:1.835,&quot;qsec&quot;:19.9,&quot;vs&quot;:1,&quot;am&quot;:1,&quot;gear&quot;:4,&quot;carb&quot;:1,&quot;_row&quot;:&quot;Toyota Corolla&quot;},{&quot;mpg&quot;:21.5,&quot;cyl&quot;:4,&quot;disp&quot;:120.1,&quot;hp&quot;:97,&quot;drat&quot;:3.7,&quot;wt&quot;:2.465,&quot;qsec&quot;:20.01,&quot;vs&quot;:1,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:1,&quot;_row&quot;:&quot;Toyota Corona&quot;},{&quot;mpg&quot;:15.5,&quot;cyl&quot;:8,&quot;disp&quot;:318,&quot;hp&quot;:150,&quot;drat&quot;:2.76,&quot;wt&quot;:3.52,&quot;qsec&quot;:16.87,&quot;vs&quot;:0,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:2,&quot;_row&quot;:&quot;Dodge Challenger&quot;},{&quot;mpg&quot;:15.2,&quot;cyl&quot;:8,&quot;disp&quot;:304,&quot;hp&quot;:150,&quot;drat&quot;:3.15,&quot;wt&quot;:3.435,&quot;qsec&quot;:17.3,&quot;vs&quot;:0,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:2,&quot;_row&quot;:&quot;AMC Javelin&quot;},{&quot;mpg&quot;:13.3,&quot;cyl&quot;:8,&quot;disp&quot;:350,&quot;hp&quot;:245,&quot;drat&quot;:3.73,&quot;wt&quot;:3.84,&quot;qsec&quot;:15.41,&quot;vs&quot;:0,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:4,&quot;_row&quot;:&quot;Camaro Z28&quot;},{&quot;mpg&quot;:19.2,&quot;cyl&quot;:8,&quot;disp&quot;:400,&quot;hp&quot;:175,&quot;drat&quot;:3.08,&quot;wt&quot;:3.845,&quot;qsec&quot;:17.05,&quot;vs&quot;:0,&quot;am&quot;:0,&quot;gear&quot;:3,&quot;carb&quot;:2,&quot;_row&quot;:&quot;Pontiac Firebird&quot;},{&quot;mpg&quot;:27.3,&quot;cyl&quot;:4,&quot;disp&quot;:79,&quot;hp&quot;:66,&quot;drat&quot;:4.08,&quot;wt&quot;:1.935,&quot;qsec&quot;:18.9,&quot;vs&quot;:1,&quot;am&quot;:1,&quot;gear&quot;:4,&quot;carb&quot;:1,&quot;_row&quot;:&quot;Fiat X1-9&quot;},{&quot;mpg&quot;:26,&quot;cyl&quot;:4,&quot;disp&quot;:120.3,&quot;hp&quot;:91,&quot;drat&quot;:4.43,&quot;wt&quot;:2.14,&quot;qsec&quot;:16.7,&quot;vs&quot;:0,&quot;am&quot;:1,&quot;gear&quot;:5,&quot;carb&quot;:2,&quot;_row&quot;:&quot;Porsche 914-2&quot;},{&quot;mpg&quot;:30.4,&quot;cyl&quot;:4,&quot;disp&quot;:95.1,&quot;hp&quot;:113,&quot;drat&quot;:3.77,&quot;wt&quot;:1.513,&quot;qsec&quot;:16.9,&quot;vs&quot;:1,&quot;am&quot;:1,&quot;gear&quot;:5,&quot;carb&quot;:2,&quot;_row&quot;:&quot;Lotus Europa&quot;},{&quot;mpg&quot;:15.8,&quot;cyl&quot;:8,&quot;disp&quot;:351,&quot;hp&quot;:264,&quot;drat&quot;:4.22,&quot;wt&quot;:3.17,&quot;qsec&quot;:14.5,&quot;vs&quot;:0,&quot;am&quot;:1,&quot;gear&quot;:5,&quot;carb&quot;:4,&quot;_row&quot;:&quot;Ford Pantera L&quot;},{&quot;mpg&quot;:19.7,&quot;cyl&quot;:6,&quot;disp&quot;:145,&quot;hp&quot;:175,&quot;drat&quot;:3.62,&quot;wt&quot;:2.77,&quot;qsec&quot;:15.5,&quot;vs&quot;:0,&quot;am&quot;:1,&quot;gear&quot;:5,&quot;carb&quot;:6,&quot;_row&quot;:&quot;Ferrari Dino&quot;},{&quot;mpg&quot;:15,&quot;cyl&quot;:8,&quot;disp&quot;:301,&quot;hp&quot;:335,&quot;drat&quot;:3.54,&quot;wt&quot;:3.57,&quot;qsec&quot;:14.6,&quot;vs&quot;:0,&quot;am&quot;:1,&quot;gear&quot;:5,&quot;carb&quot;:8,&quot;_row&quot;:&quot;Maserati Bora&quot;},{&quot;mpg&quot;:21.4,&quot;cyl&quot;:4,&quot;disp&quot;:121,&quot;hp&quot;:109,&quot;drat&quot;:4.11,&quot;wt&quot;:2.78,&quot;qsec&quot;:18.6,&quot;vs&quot;:1,&quot;am&quot;:1,&quot;gear&quot;:4,&quot;carb&quot;:2,&quot;_row&quot;:&quot;Volvo 142E&quot;}] </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5cblxuXG5qc29uX2NvbnYgPC1mcm9tSlNPTihtdGNhcnNfanNvbilcblxuYWxsLmVxdWFsKGpzb25fY29udixtdGNhcnMpXG5cblxuYGBgIn0= -->
+<pre class="r"><code>
+
+
+
+json_conv &lt;-fromJSON(mtcars_json)
+
+all.equal(json_conv,mtcars)
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueW1kKFwiMjAyMC0xMi0wMVwiKVxuYGBgIn0= -->
-<pre class="r"><code>ymd(&quot;2020-12-01&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5cbmpvYmogPC0gJ1tcInphaW5cIixcImJpbGxcIixcIndlaGVyZVwiXSdcblxuXG5cbmZyb21KU09OKGpvYmosIHNpbXBsaWZ5VmVjdG9yID0gRkFMU0UpXG5cbmBgYCJ9 -->
+<pre class="r"><code>
+
+jobj &lt;- &#39;[&quot;zain&quot;,&quot;bill&quot;,&quot;wehere&quot;]&#39;
+
+
+
+fromJSON(jobj, simplifyVector = FALSE)
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuam9iajIgPC0gJ1t7XCJOYW1lXCI6IFwiWmFpbiBIYWRpXCIsIFwiQWdlXCI6MjMsXCJPY2N1cGF0aW9uXCI6XCJTdHVkZW50XCJ9LFxuIHtcIk5hbWVcIjogXCJCaWxsIEdhdGVzXCIsIFwiQWdlXCI6NTUsXCJPY2N1cGF0aW9uXCI6XCJGb3JtZXIgQ0VPXCJ9LFxuIHtcIk5hbWVcIjogXCJTdGV2ZSBKb2JzXCIsIFwiQWdlXCI6XCJkZWFkXCIsXCJPY2N1cGF0aW9uXCI6XCJGb3JtZXIgQ0VPXCJ9LFxuIHtcIk5hbWVcIjogXCJFbG9uIE11c2tcIiwgXCJBZ2VcIjo0OCxcIk9jY3VwYXRpb25cIjpcIkNFT1wifV0nXG5cbm15ZGYxIDwtIGZyb21KU09OKGpvYmoyKVxuYGBgIn0= -->
+<pre class="r"><code>jobj2 &lt;- &#39;[{&quot;Name&quot;: &quot;Zain Hadi&quot;, &quot;Age&quot;:23,&quot;Occupation&quot;:&quot;Student&quot;},
+ {&quot;Name&quot;: &quot;Bill Gates&quot;, &quot;Age&quot;:55,&quot;Occupation&quot;:&quot;Former CEO&quot;},
+ {&quot;Name&quot;: &quot;Steve Jobs&quot;, &quot;Age&quot;:&quot;dead&quot;,&quot;Occupation&quot;:&quot;Former CEO&quot;},
+ {&quot;Name&quot;: &quot;Elon Musk&quot;, &quot;Age&quot;:48,&quot;Occupation&quot;:&quot;CEO&quot;}]&#39;
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KYGBge3J9DQpsaWJyYXJ5KCJsdWJyaWRhdGUiKQ0KDQp0b2RheSgpDQpub3coKQ0KDQoNCg0KDQpgYGANCmBgYHtyfQ0KeW1kKCIyMDIwLTEyLTAxIikNCmBgYA0KDQo=</div>
+mydf1 &lt;- fromJSON(jobj2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlkZjEkUmFua2luZ3MgPC0gYygyLDMsNCw1KVxuXG5cbnRvSlNPTihteWRmMSxwcmV0dHkgPSBUUlVFKVxuYGBgIn0= -->
+<pre class="r"><code>mydf1$Rankings &lt;- c(2,3,4,5)
+
+
+toJSON(mydf1,pretty = TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1xuICB7XG4gICAgXCJOYW1lXCI6IFwiWmFpbiBIYWRpXCIsXG4gICAgXCJBZ2VcIjogXCIyM1wiLFxuICAgIFwiT2NjdXBhdGlvblwiOiBcIlN0dWRlbnRcIixcbiAgICBcIlJhbmtpbmdzXCI6IDJcbiAgfSxcbiAge1xuICAgIFwiTmFtZVwiOiBcIkJpbGwgR2F0ZXNcIixcbiAgICBcIkFnZVwiOiBcIjU1XCIsXG4gICAgXCJPY2N1cGF0aW9uXCI6IFwiRm9ybWVyIENFT1wiLFxuICAgIFwiUmFua2luZ3NcIjogM1xuICB9LFxuICB7XG4gICAgXCJOYW1lXCI6IFwiU3RldmUgSm9ic1wiLFxuICAgIFwiQWdlXCI6IFwiZGVhZFwiLFxuICAgIFwiT2NjdXBhdGlvblwiOiBcIkZvcm1lciBDRU9cIixcbiAgICBcIlJhbmtpbmdzXCI6IDRcbiAgfSxcbiAge1xuICAgIFwiTmFtZVwiOiBcIkVsb24gTXVza1wiLFxuICAgIFwiQWdlXCI6IFwiNDhcIixcbiAgICBcIk9jY3VwYXRpb25cIjogXCJDRU9cIixcbiAgICBcIlJhbmtpbmdzXCI6IDVcbiAgfVxuXSBcbiJ9 -->
+<pre><code>[
+  {
+    &quot;Name&quot;: &quot;Zain Hadi&quot;,
+    &quot;Age&quot;: &quot;23&quot;,
+    &quot;Occupation&quot;: &quot;Student&quot;,
+    &quot;Rankings&quot;: 2
+  },
+  {
+    &quot;Name&quot;: &quot;Bill Gates&quot;,
+    &quot;Age&quot;: &quot;55&quot;,
+    &quot;Occupation&quot;: &quot;Former CEO&quot;,
+    &quot;Rankings&quot;: 3
+  },
+  {
+    &quot;Name&quot;: &quot;Steve Jobs&quot;,
+    &quot;Age&quot;: &quot;dead&quot;,
+    &quot;Occupation&quot;: &quot;Former CEO&quot;,
+    &quot;Rankings&quot;: 4
+  },
+  {
+    &quot;Name&quot;: &quot;Elon Musk&quot;,
+    &quot;Age&quot;: &quot;48&quot;,
+    &quot;Occupation&quot;: &quot;CEO&quot;,
+    &quot;Rankings&quot;: 5
+  }
+] </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpGcm9tIGpzb24NCnRvIGpzb24gDQpsaXN0cyBvciB3aGF0ZXZlciB5b3Ugd2FudCANCnRvIGpzb24gDQpgYGB7cn0NCmxpYnJhcnkoanNvbmxpdGUpDQoNCm10Y2Fyc19qc29uIDwtIHRvSlNPTihtdGNhcnMpDQoNCg0KbXRjYXJzX2pzb24NCg0KDQoNCmBgYA0KDQpgYGB7cn0NCg0KDQoNCg0KanNvbl9jb252IDwtZnJvbUpTT04obXRjYXJzX2pzb24pDQoNCmFsbC5lcXVhbChqc29uX2NvbnYsbXRjYXJzKQ0KDQoNCmBgYA0KYGBge3J9DQoNCg0Kam9iaiA8LSAnWyJ6YWluIiwiYmlsbCIsIndlaGVyZSJdJw0KDQoNCg0KZnJvbUpTT04oam9iaiwgc2ltcGxpZnlWZWN0b3IgPSBGQUxTRSkNCg0KYGBgDQoNCmBgYHtyfQ0Kam9iajIgPC0gJ1t7Ik5hbWUiOiAiWmFpbiBIYWRpIiwgIkFnZSI6MjMsIk9jY3VwYXRpb24iOiJTdHVkZW50In0sDQogeyJOYW1lIjogIkJpbGwgR2F0ZXMiLCAiQWdlIjo1NSwiT2NjdXBhdGlvbiI6IkZvcm1lciBDRU8ifSwNCiB7Ik5hbWUiOiAiU3RldmUgSm9icyIsICJBZ2UiOiJkZWFkIiwiT2NjdXBhdGlvbiI6IkZvcm1lciBDRU8ifSwNCiB7Ik5hbWUiOiAiRWxvbiBNdXNrIiwgIkFnZSI6NDgsIk9jY3VwYXRpb24iOiJDRU8ifV0nDQoNCm15ZGYxIDwtIGZyb21KU09OKGpvYmoyKQ0KYGBgDQpgYGB7cn0NCm15ZGYxJFJhbmtpbmdzIDwtIGMoMiwzLDQsNSkNCg0KDQp0b0pTT04obXlkZjEscHJldHR5ID0gVFJVRSkNCg0KYGBgDQoNCg==</div>
 
 
 
@@ -1875,7 +1949,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("Dates & Times in R.Rmd");
+  window.initializeSourceEmbed("json parsing.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

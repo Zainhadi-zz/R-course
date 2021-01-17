@@ -1,0 +1,59 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+From json
+to json 
+lists or whatever you want 
+to json 
+```{r}
+library(jsonlite)
+
+mtcars_json <- toJSON(mtcars)
+
+
+mtcars_json
+
+
+
+```
+
+```{r}
+
+
+
+
+json_conv <-fromJSON(mtcars_json)
+
+all.equal(json_conv,mtcars)
+
+
+```
+```{r}
+
+
+jobj <- '["zain","bill","wehere"]'
+
+
+
+fromJSON(jobj, simplifyVector = FALSE)
+
+```
+
+```{r}
+jobj2 <- '[{"Name": "Zain Hadi", "Age":23,"Occupation":"Student"},
+ {"Name": "Bill Gates", "Age":55,"Occupation":"Former CEO"},
+ {"Name": "Steve Jobs", "Age":"dead","Occupation":"Former CEO"},
+ {"Name": "Elon Musk", "Age":48,"Occupation":"CEO"}]'
+
+mydf1 <- fromJSON(jobj2)
+```
+```{r}
+mydf1$Rankings <- c(2,3,4,5)
+
+
+toJSON(mydf1,pretty = TRUE)
+
+```
+

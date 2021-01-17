@@ -1,0 +1,123 @@
+---
+title: "Web Scrapping"
+output: html_notebook
+---
+Package name:
+{rvest}
+
+
+Website we will scrap data:
+https://www.imdb.com/chart/top/
+
+```{r}
+library(rvest)
+
+url <- "https://www.imdb.com/chart/top/"
+
+
+top_movies <- read_html(url) 
+
+
+```
+class (".name")
+id ("#name")
+
+Movie Titles
+```{r}
+library(dplyr)
+library(stringr)
+
+titles <-top_movies %>%
+  html_nodes("tbody tr td.titleColumn") %>%
+  html_text() %>%
+  str_trim() %>%
+  strsplit("\n") %>%
+  lapply(function(movies){movies[2]}) %>%
+  unlist() %>%
+  str_trim()
+
+```
+
+Movie Years
+```{r}
+
+years <-top_movies %>%
+  html_nodes("tbody tr td.titleColumn") %>%
+  html_text() %>%
+  str_trim() %>%
+  strsplit("\n") %>%
+  lapply(function(movies){movies[3]}) %>%
+  unlist() %>%
+  str_trim() %>%
+  str_replace("\\(","") %>%
+  str_replace("\\)","") %>%
+  as.integer()
+
+
+```
+
+Ranks
+```{r}
+ranks <- 1:250
+
+```
+
+Ratings
+```{r}
+ratings <- top_movies %>%
+  html_nodes(".imdbRating strong") %>%
+  html_text() %>%
+  as.numeric()
+
+```
+
+```{r}
+top_movies_tibble <-tibble(
+  Rank = ranks,
+  Name = titles,
+  Yea = years,
+  Rating = ratings
+  
+  
+)
+
+```
+```{r}
+top_movies_tibble %>%
+  arrange(desc(years))
+
+
+
+```
+
+
+Extracting Links
+```{r}
+links <- top_movies %>%
+  html_nodes("tbody tr td.titleColumn a") %>%
+  html_attr("href") %>%
+  paste0("https://www.imdb.com", .)
+```
+
+Extract the Director name
+```{r}
+links[2] %>%
+  read_html() %>%
+  html_node("div.credit_summary_item a") %>%
+  html_text()
+```
+```{r}
+dnames <- lapply(links[1:10], function(link){
+  link %>%
+  read_html() %>%
+  html_node("div.credit_summary_item a") %>%
+  html_text()
+  
+  
+})
+
+dnames %>%
+  unlist()
+
+```
+
